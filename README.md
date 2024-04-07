@@ -13,11 +13,12 @@
 
 ### Installation Steps
 
-In the terminal:
+In the codespace terminal:
 
   - Change working directory to magic-queries by typing: cd /workspaces/Magic-Queries-Main-Repo/magic-queries
   - Type "npm install"
   - Type "npm install astro"
+  - Type "npm run dev"
 
 ## Functionality
 
@@ -25,4 +26,4 @@ Use the search bar to lookup cards by name, this is using the Scryfall API. We a
 
 ## License
 
-See LICENSE.txt
+See [LICENSE.txt](https://github.com/CSCD488-Winter2024/Magic-Queries-Main-Repo/blob/main/LICENSE.txt)
