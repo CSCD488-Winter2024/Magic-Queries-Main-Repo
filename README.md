@@ -24,9 +24,7 @@ These are the major things that we are looking to do for Mr. Waite. However, dur
 
 In the codespace terminal:
 
-  - Change working directory to magic-queries by typing: cd /workspaces/Magic-Queries-Main-Repo/magic-queries
-  - Type "npm install"
-  - Type "npm install astro"
+  - Change working directory to magic-queries by typing: cd project-description-user-stories-and-glossary-magic-queries/magic-queries
   - Type "npm run dev"
 
 ## Functionality
