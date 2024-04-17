@@ -53,3 +53,10 @@ searchInput.addEventListener('input', () => {
     cardContainer.innerHTML = '';
   }
 });
+
+searchInput.addEventListener("keypress", function (event) { 
+   
+  if (event.key === 'Enter') { 
+      searchButton.click(); 
+  } 
+}); 
