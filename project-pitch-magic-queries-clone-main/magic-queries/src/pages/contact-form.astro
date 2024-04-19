@@ -1,4 +1,10 @@
-<html>
+---
+import Navigation from '../components/Navigation.astro';
+const websiteName = 'Contact-Form';
+---
+
+
+<html lang="en">
     <head>
         <meta name = "viewport" content = "width = device-width, initial-scale = 1">
         <title>Email Form to Order Cards</title>
@@ -6,8 +12,11 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     </head>
     <body>
+
+        <Navigation />
+
         <div class = "container">
-            <h2>Email Form to Order Cards</h2>
+    </div>        <h2>Email Form to Order Cards</h2>
             <form action = "email.php" method = "post">
                 <div class = "form-group">
                     <label for = "name">Name:</label>
