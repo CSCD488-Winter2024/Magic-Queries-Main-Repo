@@ -1,0 +1,17 @@
+---
+import Navigation from '../components/Navigation.astro';
+const websiteName = 'Cart';
+---
+
+<Navigation websiteName={websiteName} />
+<main>
+    <head>
+        <meta name = "viewport" content = "width = device-width, initial-scale = 1">
+        <title>Shopping Cart</title>
+    </head>
+    <body>
+        <h1>Shopping Cart</h1>
+        <div id="cart"></div>
+        <script type="module" src="/cart.js"></script>
+    </body>
+</main>
