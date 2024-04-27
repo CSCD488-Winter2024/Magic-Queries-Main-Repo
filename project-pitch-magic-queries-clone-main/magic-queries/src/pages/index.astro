@@ -1,10 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
+import Header from '../components/Header.astro';
+const websiteName = 'Merlyns MTG Search';
 ---
 
 
-<header style="background-color: #174417; height: 100px">
+<header style="background-color: purple; height: 100px">
 	<h1 style="color: white;">Welcome to Merlyns</h1>
 </header>
 
@@ -17,6 +19,8 @@ import Card from '../components/Card.astro';
 
 <Layout title="Layout">
 	<main>
+
+		<Header/>
 
         <section class="search-container">
             <input type="text" id="searchInput" placeholder="Search cards..." />
