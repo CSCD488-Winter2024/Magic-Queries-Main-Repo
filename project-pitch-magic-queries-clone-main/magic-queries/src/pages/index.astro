@@ -5,33 +5,57 @@ import Header from '../components/Header.astro';
 const websiteName = 'Merlyns MTG Search';
 ---
 
-
-<header style="background-color: purple; height: 100px">
-	<h1 style="color: white;">Welcome to Merlyns</h1>
-</header>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Magic Cards Collection</title>
-	<link rel="stylesheet" href="styles.css">
 </head>
 
+<header class= "bg-green-700">
+	<div class ="flex justify-start">
+		<img src="https://images.squarespace-cdn.com/content/v1/615c96de44cb036b04b47f25/57ead580-4847-4aad-826d-3cf8f50a0d57/merlyns_transparent.png?format=125w" alt="Merylns Logo">
+	</div>
+	
+	<div class ="absolute top-0 right-0">
+		<ul class=" text-blue-900 container mx-auto grid gap-4 md:grid-cols-3 md:grid-cols-2">
+			<li class=" block text-center text-xl ring-4 ring-gray-800 bg-blue-200 bg-opacity-50 ring-opacity-25 w-1/2 h-6 rounded-sm"><a href="/">Home</a></li>
+			<li class=" block text-center text-xl ring-4 ring-gray-800 bg-blue-200 bg-opacity-50 ring-opacity-25 w-1/2 h-6 rounded-sm"><a href="/contact-form/">Contact-Form</a></li>
+			<li class=" block text-center text-xl ring-4 ring-gray-800 bg-blue-200 bg-opacity-50 ring-opacity-25 w-1/2 h-6 rounded-sm"><a href="/cart/">Cart</a></li>
+		</ul>
+	</div>
+
+
+
+</header>
+
 <Layout title="Layout">
-	<main>
+	<main class= "bg-gray-50 min-h-screen">
 
-		<Header/>
+		<div class="flex items-center mb-4">
+			<input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+			<label for="default-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">White</label>
+			<input checked id="checked-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+			<label for="checked-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Blue</label>
+			<input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+			<label for="default-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Black</label>
+			<input checked id="checked-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+			<label for="checked-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Red</label>
+			<input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+			<label for="default-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Green</label>			<input checked id="checked-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+			<label for="checked-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Colorless</label>
+		</div>
 
-        <section class="search-container">
-            <input type="text" id="searchInput" placeholder="Search cards..." />
-            <button id="searchButton">Search</button>
-        </section>
-        <section class="card-container" id="cardContainer">
-            <!-- Cards will be dynamically added here -->
-        </section>
-		
+		<div class=" flex justify-center">
+			<section class="search-container">
+				<input type="text" id="searchInput" placeholder="Search cards..." />
+				<button id="searchButton">Search</button>
+			</section>
+			<section class="card-container" id="cardContainer">
+				<!-- Cards will be dynamically added here -->
+			</section>
+		</div>
 	</main>
-	<footer>
+	<footer class= "bg-gray-50">
         <p>&copy; Merlyn's Comics and Games</p>
     </footer>
 	<script> 
@@ -39,61 +63,3 @@ const websiteName = 'Merlyns MTG Search';
 	</script>
 </Layout>
 
-<style>
-	main {
-		margin: auto;
-		padding: 1rem;
-		width: 800px;
-		max-width: calc(100% - 2rem);
-		color: white;
-		font-size: 20px;
-		line-height: 1.6;
-	}
-	.astro-a {
-		position: absolute;
-		top: -32px;
-		left: 50%;
-		transform: translatex(-50%);
-		width: 220px;
-		height: auto;
-		z-index: -1;
-	}
-	h1 {
-		font-size: 4rem;
-		font-weight: 700;
-		line-height: 1;
-		text-align: center;
-		margin-bottom: 1em;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-	.instructions {
-		margin-bottom: 2rem;
-		border: 1px solid rgba(var(--accent-light), 25%);
-		background: linear-gradient(rgba(var(--accent-dark), 66%), rgba(var(--accent-dark), 33%));
-		padding: 1.5rem;
-		border-radius: 8px;
-	}
-	.instructions code {
-		font-size: 0.8em;
-		font-weight: bold;
-		background: rgba(var(--accent-light), 12%);
-		color: rgb(var(--accent-light));
-		border-radius: 4px;
-		padding: 0.3em 0.4em;
-	}
-	.instructions strong {
-		color: rgb(var(--accent-light));
-	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 2rem;
-		padding: 0;
-	}
-</style>
