@@ -30,10 +30,89 @@ const websiteName = 'Merlyns MTG Search';
 </header>
 
 <Layout title="Layout">
-	<main class= "bg-gray-50 min-h-screen p-4">
+	<main class= "bg-gray-50 min-h-screen grid grid-cols-3 gap-3">
 
-		<!-- Search box -->
-		<div class=" flex justify-center ">
+		<!-- Start of Sidebar -->
+		<div class="h-screen sticky top-0">
+			<!-- Start of Color checkboxes -->
+			<div class="m-4 flex items-center">
+				<ul class="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+   					<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+        				<div class="flex items-center ps-3">
+        	    			<input id="vue-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+        	    			<label for="vue-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">White</label>
+        				</div>
+    				</li>
+    				<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+        				<div class="flex items-center ps-3">
+        	    			<input id="react-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+        	    			<label for="react-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Blue</label>
+        				</div>
+    				</li>
+    				<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+        				<div class="flex items-center ps-3">
+        	    			<input id="angular-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+        	    			<label for="angular-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Black</label>
+        				</div>
+    				</li>
+    				<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+        				<div class="flex items-center ps-3">
+        	    			<input id="laravel-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+        	    			<label for="laravel-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Red</label>
+        				</div>
+    				</li>
+					<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+        				<div class="flex items-center ps-3">
+        	    			<input id="laravel-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+        	    			<label for="laravel-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Green</label>
+        				</div>
+    				</li>
+					<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+        				<div class="flex items-center ps-3">
+        	    			<input id="laravel-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+        	    			<label for="laravel-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Colorless</label>
+        				</div>
+    				</li>
+				</ul>
+			</div>
+			<!-- End of Color checkboxes -->
+			<!-- Start of Dropdown menu -->
+			<div class="m-4 flex items-center">
+				<button id="dropdownCheckboxButton" data-dropdown-toggle="dropdownDefaultCheckbox" class=" text-white dark:bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-blue-800" type="button" items-center >Dropdown Checkbox for Sets <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+					<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+					</svg>
+				</button>
+			
+				<div id="dropdownDefaultCheckbox" class="z-10 hidden w-48 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600">
+					<ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownCheckboxButton">
+					<li>
+						<div class="flex items-center">
+						<input id="checkbox-item-1" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+						<label for="checkbox-item-1" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Type A</label>
+						</div>
+					</li>
+					<li>
+						<div class="flex items-center">
+							<input checked id="checkbox-item-2" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+							<label for="checkbox-item-2" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Type B</label>
+						</div>
+					</li>
+					<li>
+						<div class="flex items-center">
+						<input id="checkbox-item-3" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+						<label for="checkbox-item-3" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Type C</label>
+						</div>
+					</li>
+					</ul>
+				</div>
+			</div>	
+			<!-- End of Dropdown menu -->
+
+		</div>
+		<!-- End of Sidebar -->
+
+		<!-- Start of Search box -->
+		<div class=" flex col-span-2">
 			<section class="search-container">
 				<input type="text" id="searchInput" placeholder="Search cards..." />
 				<button id="searchButton">Search</button>
@@ -42,81 +121,7 @@ const websiteName = 'Merlyns MTG Search';
 				<!-- Cards will be dynamically added here -->
 			</section>
 		</div>
-
-		<!-- Start of Color checkboxes -->
-		<div class="flex items-center">
-
-			<h3 class="mb-4 font-semibold text-gray-900 dark:text-white">Colors</h3>
-			<ul class="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-   				<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-        			<div class="flex items-center ps-3">
-            			<input id="vue-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-            			<label for="vue-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">White</label>
-        			</div>
-    			</li>
-    			<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-        			<div class="flex items-center ps-3">
-            			<input id="react-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-            			<label for="react-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Blue</label>
-        			</div>
-    			</li>
-    			<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-        			<div class="flex items-center ps-3">
-            			<input id="angular-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-            			<label for="angular-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Black</label>
-        			</div>
-    			</li>
-    			<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-        			<div class="flex items-center ps-3">
-            			<input id="laravel-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-            			<label for="laravel-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Red</label>
-        			</div>
-    			</li>
-				<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-        			<div class="flex items-center ps-3">
-            			<input id="laravel-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-            			<label for="laravel-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Green</label>
-        			</div>
-    			</li>
-				<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-        			<div class="flex items-center ps-3">
-            			<input id="laravel-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-            			<label for="laravel-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Colorless</label>
-        			</div>
-    			</li>
-			</ul>
-		</div>
-		<!-- End of Color checkboxes -->
-
-		<!-- Start of Dropdown menu -->
-		<button id="dropdownCheckboxButton" data-dropdown-toggle="dropdownDefaultCheckbox" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Dropdown checkbox <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-			<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-			</svg>
-			</button>
-		
-			<div id="dropdownDefaultCheckbox" class="z-10 hidden w-48 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600">
-				<ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownCheckboxButton">
-				<li>
-					<div class="flex items-center">
-					<input id="checkbox-item-1" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-					<label for="checkbox-item-1" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Type A</label>
-					</div>
-				</li>
-				<li>
-					<div class="flex items-center">
-						<input checked id="checkbox-item-2" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-						<label for="checkbox-item-2" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Type B</label>
-					</div>
-				</li>
-				<li>
-					<div class="flex items-center">
-					<input id="checkbox-item-3" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-					<label for="checkbox-item-3" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Type C</label>
-					</div>
-				</li>
-				</ul>
-			</div>
-		<!-- End of Dropdown menu -->
+		<!-- End of Search box -->
 	
 	</main>
 
