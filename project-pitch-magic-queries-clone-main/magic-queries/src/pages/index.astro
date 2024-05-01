@@ -5,33 +5,131 @@ import Header from '../components/Header.astro';
 const websiteName = 'Merlyns MTG Search';
 ---
 
-
-<header style="background-color: purple; height: 100px">
-	<h1 style="color: white;">Welcome to Merlyns</h1>
-</header>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Magic Cards Collection</title>
-	<link rel="stylesheet" href="styles.css">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet"/>
 </head>
 
+<header class= "bg-green-700">
+	<div class ="flex justify-start">
+		<img src="https://images.squarespace-cdn.com/content/v1/615c96de44cb036b04b47f25/57ead580-4847-4aad-826d-3cf8f50a0d57/merlyns_transparent.png?format=125w" alt="Merylns Logo">
+	</div>
+	
+	<div class ="absolute top-0 right-0">
+		<ul class=" text-blue-900 container mx-auto grid gap-4 md:grid-cols-3 md:grid-cols-2">
+			<li class=" block text-center text-xl ring-4 ring-gray-800 bg-blue-200 bg-opacity-50 ring-opacity-25 w-20 h-8 rounded-sm"><a href="/">Home</a></li>
+			<li class=" block text-center text-xl ring-4 ring-gray-800 bg-blue-200 bg-opacity-50 ring-opacity-25 w-20 h-8 rounded-sm"><a href="/contact-form/">Contact</a></li>
+			<li class=" block text-center text-xl ring-4 ring-gray-800 bg-blue-200 bg-opacity-50 ring-opacity-25 w-20 h-8 rounded-sm"><a href="/cart/">Cart</a></li>
+		</ul>
+	</div>
+
+
+
+</header>
+
 <Layout title="Layout">
-	<main>
+	<main class= "bg-gray-50 min-h-screen grid grid-cols-3 gap-3">
 
-		<Header/>
+		<!-- Start of Sidebar -->
+		<div class="h-screen sticky top-0">
+			<!-- Start of Color checkboxes -->
+			<div class="m-4 flex items-center">
+				<ul class="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+   					<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+        				<div class="flex items-center ps-3">
+        	    			<input id="vue-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+        	    			<label for="vue-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">White</label>
+        				</div>
+    				</li>
+    				<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+        				<div class="flex items-center ps-3">
+        	    			<input id="react-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+        	    			<label for="react-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Blue</label>
+        				</div>
+    				</li>
+    				<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+        				<div class="flex items-center ps-3">
+        	    			<input id="angular-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+        	    			<label for="angular-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Black</label>
+        				</div>
+    				</li>
+    				<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+        				<div class="flex items-center ps-3">
+        	    			<input id="laravel-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+        	    			<label for="laravel-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Red</label>
+        				</div>
+    				</li>
+					<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+        				<div class="flex items-center ps-3">
+        	    			<input id="laravel-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+        	    			<label for="laravel-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Green</label>
+        				</div>
+    				</li>
+					<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+        				<div class="flex items-center ps-3">
+        	    			<input id="laravel-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+        	    			<label for="laravel-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Colorless</label>
+        				</div>
+    				</li>
+				</ul>
+			</div>
+			<!-- End of Color checkboxes -->
+			<!-- Start of Dropdown menu -->
+			<div class="m-4 flex items-center">
+				<button id="dropdownCheckboxButton" data-dropdown-toggle="dropdownDefaultCheckbox" class=" text-white dark:bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-blue-800" type="button" items-center >Dropdown Checkbox for Sets <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+					<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+					</svg>
+				</button>
+			
+				<div id="dropdownDefaultCheckbox" class="z-10 hidden w-48 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600">
+					<ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownCheckboxButton">
+					<li>
+						<div class="flex items-center">
+						<input id="checkbox-item-1" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+						<label for="checkbox-item-1" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Type A</label>
+						</div>
+					</li>
+					<li>
+						<div class="flex items-center">
+							<input checked id="checkbox-item-2" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+							<label for="checkbox-item-2" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Type B</label>
+						</div>
+					</li>
+					<li>
+						<div class="flex items-center">
+						<input id="checkbox-item-3" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+						<label for="checkbox-item-3" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Type C</label>
+						</div>
+					</li>
+					</ul>
+				</div>
+			</div>	
+			<!-- End of Dropdown menu -->
 
-        <section class="search-container">
-            <input type="text" id="searchInput" placeholder="Search cards..." />
-            <button id="searchButton">Search</button>
-        </section>
-        <section class="card-container" id="cardContainer">
-            <!-- Cards will be dynamically added here -->
-        </section>
-		
+		</div>
+		<!-- End of Sidebar -->
+
+		<!-- Start of Search box -->
+		<div class=" flex col-span-2">
+			<section class="search-container">
+				<input type="text" id="searchInput" placeholder="Search cards..." />
+				<button id="searchButton">Search</button>
+			</section>
+			<section class="card-container" id="cardContainer">
+				<!-- Cards will be dynamically added here -->
+			</section>
+		</div>
+		<!-- End of Search box -->
+	
 	</main>
-	<footer>
+
+	<body>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+	</body>
+
+	<footer class= "bg-gray-50">
         <p>&copy; Merlyn's Comics and Games</p>
     </footer>
 	<script> 
@@ -39,61 +137,3 @@ const websiteName = 'Merlyns MTG Search';
 	</script>
 </Layout>
 
-<style>
-	main {
-		margin: auto;
-		padding: 1rem;
-		width: 800px;
-		max-width: calc(100% - 2rem);
-		color: white;
-		font-size: 20px;
-		line-height: 1.6;
-	}
-	.astro-a {
-		position: absolute;
-		top: -32px;
-		left: 50%;
-		transform: translatex(-50%);
-		width: 220px;
-		height: auto;
-		z-index: -1;
-	}
-	h1 {
-		font-size: 4rem;
-		font-weight: 700;
-		line-height: 1;
-		text-align: center;
-		margin-bottom: 1em;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-	.instructions {
-		margin-bottom: 2rem;
-		border: 1px solid rgba(var(--accent-light), 25%);
-		background: linear-gradient(rgba(var(--accent-dark), 66%), rgba(var(--accent-dark), 33%));
-		padding: 1.5rem;
-		border-radius: 8px;
-	}
-	.instructions code {
-		font-size: 0.8em;
-		font-weight: bold;
-		background: rgba(var(--accent-light), 12%);
-		color: rgb(var(--accent-light));
-		border-radius: 4px;
-		padding: 0.3em 0.4em;
-	}
-	.instructions strong {
-		color: rgb(var(--accent-light));
-	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 2rem;
-		padding: 0;
-	}
-</style>

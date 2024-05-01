@@ -59,6 +59,8 @@ async function handleAddToCartClick(card) {
   console.log('Added to cart:', card.name);
 }
 
+
+
 searchButton.addEventListener('click', async () => {
   const searchTerm = searchInput.value.trim();
   if (searchTerm) {
