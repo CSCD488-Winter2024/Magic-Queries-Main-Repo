@@ -24,14 +24,20 @@ function fetchMagicCards() {
   const capitalized = urlParams.get('name') === null ? "" : urlParams.get('name').charAt(0).toUpperCase() + urlParams.get('name').slice(1);
   const name = urlParams.get('name') === null ? "" : urlParams.get('name');
 
-  const namePart = urlParams.get('name') === null ? "" : or(and(where('name', '>=', capitalized), where('name', '<=', capitalized + '\uf8ff')), where('nameArray', 'array-contains-any', name.split(' ')));
-  const rarity = urlParams.get('rarity') === null ? "" : where('rarity', '==', rarity);
-  const color = urlParams.get('color') === null ? "" : where('color', '==', color);
-  const type = urlParams.get('type') === null ? "" : where('type', '==', type);
-  const set = urlParams.get('set') === null ? "" : where('set', '==', set);
-  const page = urlParams.get('page') === null ? 0 : parseInt(page);
+  const rarity = urlParams.get('rarity');
+  const color = urlParams.get('color');
+  const type = urlParams.get('type');
+  const set = urlParams.get('set');
+  const page = urlParams.get('page');
 
-  const queryParts = [namePart, rarity, color, type, set].filter(part => part !== "");
+  const namePart = urlParams.get('name') === null ? "" : or(and(where('name', '>=', capitalized), where('name', '<=', capitalized + '\uf8ff')), where('nameArray', 'array-contains-any', name.split(' ')));
+  const rarityPart = urlParams.get('rarity') === null ? "" : where('rarity', '==', rarity);
+  const colorPart = urlParams.get('color') === null ? "" : where('color', '==', color);
+  const typePart = urlParams.get('type') === null ? "" : where('type', '==', type);
+  const setPart = urlParams.get('set') === null ? "" : where('set', '==', set);
+  const pagePart = urlParams.get('page') === null ? 0 : parseInt(page);
+
+  const queryParts = [namePart, rarityPart, colorPart, typePart, setPart].filter(part => part !== "");
   const myQuery = query(collection(firestore, 'MagicCards'), and(...queryParts), limit(10));
 
   // if the query matches the previous query, don't fetch again
@@ -104,8 +110,10 @@ async function handleAddToCartClick(card) {
 
 searchButton.addEventListener('click', async () => {
   const searchTerm = searchInput.value.trim();
-  // add search pramas to the URL
-  window.history.pushState({}, '', `?name=${searchTerm}`);
+  // add search pramas to the URL and the color blue
+  const url = new URL(window.location.href);
+  url.searchParams.set('name', searchTerm);
+  window.history.pushState({}, '', url);
   if (searchTerm) {
     fetchMagicCards();
   }

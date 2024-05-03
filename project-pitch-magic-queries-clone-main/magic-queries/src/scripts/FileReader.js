@@ -14,11 +14,10 @@ const firebaseApp = initializeApp({
 })
 
 class cardInfo {
-    constructor(set, name, color, id, rarity, quantity, picURL, type, price){
+    constructor(set, name, color, rarity, quantity, picURL, type, price){
         this.set = set;
         this.name = name;
         this.color = color;
-        this.id = id;
         this.rarity = rarity;
         this.quantity = quantity;
         this.picURL = picURL;
@@ -47,7 +46,6 @@ function writeDataToFirebase(cardList) {
             name: card.name === undefined ? "N/A" : card.name,
             set: card.set === undefined ? "N/A" : card.set,
             color: colorString === "" ? "C" : colorString,
-            id: card.id === undefined ? "N/A" : card.id,
             rarity: card.rarity === undefined ? "N/A" : card.rarity,
             // make quantity a number
             quantity: card.quantity === undefined ? 0 : parseInt(card.quantity),
@@ -91,7 +89,6 @@ function readAllMagicCards(excelCardList) {
             const name = card['name'];
             // get the color array from the card
             const color = card['color_identity'];
-            const id = card['collector_number'];
             const rarity = card['rarity'];
             const quantity = "";
             // try to get image_uris.png, if not, leave it empty
@@ -102,7 +99,7 @@ function readAllMagicCards(excelCardList) {
             }
             const type = card.type_line;
             const price = card.prices.usd;
-            cardList.push(new cardInfo(set, name, color, id, rarity, quantity, picURL, type, price));
+            cardList.push(new cardInfo(set, name, color, rarity, quantity, picURL, type, price));
         });
         console.log("Read allMagicCards.json successfully.");
         // loop through excelCardList and find the corresponding card in cardList
@@ -112,7 +109,7 @@ function readAllMagicCards(excelCardList) {
                 if (excelCard.name === card.name && excelCard.set === card.set) {
                     // combine excel and scryfall data
                     ///////////////////////////////////////////////////////////////////////////////////////////////////////
-                    combinedCard.push(new cardInfo(excelCard.set, excelCard.name, card.color, card.id, excelCard.rarity, excelCard.quantity, card.picURL, card.type, card.price));
+                    combinedCard.push(new cardInfo(excelCard.set, excelCard.name, card.color, excelCard.rarity, excelCard.quantity, card.picURL, card.type, card.price));
                     console.log(combinedCard);
                 }
             });
@@ -142,7 +139,6 @@ function readExcelFile(fileURL) {
         // get the name of the card from the 2nd column
         const name = card[Object.keys(card)[1]];
         const color = card['Color'];
-        const id = card['#'];
         const rarity = card['Rarity'];
         // get last column of the excel file as quantity
         const quantity = card[Object.keys(card)[Object.keys(card).length - 1]];
@@ -171,7 +167,7 @@ function readExcelFile(fileURL) {
         }
 
         // create card object
-        const cardObj = new cardInfo(set, name, color, id, rarity, quantity, picURL, type, price);
+        const cardObj = new cardInfo(set, name, color, rarity, quantity, picURL, type, price);
         cardList.push(cardObj);
         // Print the card object to console
         //console.log(cardObj);
@@ -216,7 +212,7 @@ function searchDatabase(name, rarity, color, type, set, page){
 
 //getDatabaseCards();
 
-readExcelFile('Core Set 2019.xlsx');
-readExcelFile('Core Set 2020.xlsx');
-readExcelFile('Core Set 2021.xlsx');
+//readExcelFile('Core Set 2019.xlsx');
+//readExcelFile('Core Set 2020.xlsx');
+//readExcelFile('Core Set 2021.xlsx');
 //searchDatabase('of', '', '', '', '', '');
