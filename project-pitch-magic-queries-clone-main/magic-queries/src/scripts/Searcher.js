@@ -38,6 +38,12 @@ function fetchMagicCards() {
   const pagePart = urlParams.get('page') === null ? 0 : parseInt(page);
 
   const queryParts = [namePart, rarityPart, colorPart, typePart, setPart].filter(part => part !== "");
+
+  // if query is empty, add a default query, that fetches all cards that start with A
+  if (queryParts.length === 0) {
+    queryParts.push(where('name', '>=', 'A'), where('name', '<=', 'A\uf8ff'));
+  }
+
   const myQuery = query(collection(firestore, 'MagicCards'), and(...queryParts), limit(10));
 
   // if the query matches the previous query, don't fetch again
@@ -66,37 +72,29 @@ function displayCards() {
   cardContainer.innerHTML = ''; // Clear previous search results
   // get the cards from session storage
   const cards = JSON.parse(sessionStorage.getItem('search'));
+  var cardIndex = 0;
+  // create a grid of cards with a column of 3 cards
   cards.forEach(card => {
-    // Create a card element for each card
-    const cardElement = document.createElement('div');
-    cardElement.classList.add('card');
-
     // Create an image element for the card
     const imgElement = document.createElement('img');
     const cardNormalPicURL = card.picURL.replace('/png', '/normal').replace('.png', '.jpg');
+
+    // create a grid of cards with a column of 3 cards
+    const cardElement = document.createElement('div');
+    cardElement.classList.add('card');
+    // limit the size of the card container
+    cardElement.style.width = '20%';
+    cardElement.style.margin = '10px';
+    cardElement.style.padding = '10px';
+    cardElement.style.display = 'inline-block';
+
     imgElement.src = cardNormalPicURL;
-    imgElement.alt = card.name; // Set alt attribute for accessibility
-
-    // Add click event listener to open a new window with detailed information
-    // Right now this doesn't do anything, but we will implement it later
-    cardElement.addEventListener('click', () => {
-      const newItemWindow = window.open(`/item-details/${card.id}`, '_blank');
-      newItemWindow.focus();
-    });
-
-    // Create "Add to Cart" button
-    const addToCartButton = document.createElement('button');
-    addToCartButton.textContent = 'Add to Cart';
-    addToCartButton.classList.add('add-to-cart');
-    addToCartButton.addEventListener('click', event => {
-      event.stopPropagation(); // Prevent the click event from bubbling to the card element
-      handleAddToCartClick(card);
-    });
+    imgElement.alt = card.name; // Set alt attribute for accessibility    
 
     cardElement.appendChild(imgElement);
-    cardElement.appendChild(addToCartButton);
     cardContainer.appendChild(cardElement);
 
+    cardIndex++;
   });
 
 }
@@ -113,6 +111,7 @@ searchButton.addEventListener('click', async () => {
   // add search pramas to the URL and the color blue
   const url = new URL(window.location.href);
   url.searchParams.set('name', searchTerm);
+  //url.searchParams.set('color', 'U');
   window.history.pushState({}, '', url);
   if (searchTerm) {
     fetchMagicCards();
@@ -138,4 +137,6 @@ const searchQuery = urlParams.get('name');
 if (searchQuery) {
   searchInput.value = searchQuery;
   searchButton.click();
+} else {
+  fetchMagicCards();
 }
