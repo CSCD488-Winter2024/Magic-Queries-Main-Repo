@@ -91,7 +91,24 @@ function displayCards() {
     imgElement.src = cardNormalPicURL;
     imgElement.alt = card.name; // Set alt attribute for accessibility    
 
+    // Add click event listener to open a new window with detailed information
+    // Right now this doesn't do anything, but we will implement it later
+    cardElement.addEventListener('click', () => {
+      const newItemWindow = window.open(`/item-details/${card.id}`, '_blank');
+      newItemWindow.focus();
+    });
+
+    // Create "Add to Cart" button
+    const addToCartButton = document.createElement('button');
+    addToCartButton.textContent = 'Add to Cart';
+    addToCartButton.classList.add('add-to-cart');
+    addToCartButton.addEventListener('click', event => {
+      event.stopPropagation(); // Prevent the click event from bubbling to the card element
+      handleAddToCartClick(card);
+    });
+
     cardElement.appendChild(imgElement);
+    cardElement.appendChild(addToCartButton);
     cardContainer.appendChild(cardElement);
 
     cardIndex++;
