@@ -95,6 +95,8 @@ function displayCards() {
     // Create "Add to Cart" button
     const addToCartButton = document.createElement('button');
     addToCartButton.textContent = 'Add to Cart';
+    // add border to the button using tailwind
+    addToCartButton.classList.add('border', 'border-blue-500', 'text-blue-500', 'rounded-md', 'px-4', 'py-2', 'm-2');
     addToCartButton.classList.add('add-to-cart');
     addToCartButton.addEventListener('click', event => {
       event.stopPropagation(); // Prevent the click event from bubbling to the card element
