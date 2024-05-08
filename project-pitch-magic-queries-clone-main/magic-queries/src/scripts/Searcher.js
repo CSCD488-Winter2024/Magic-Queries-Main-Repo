@@ -24,18 +24,12 @@ function fetchMagicCards() {
   const capitalized = urlParams.get('name') === null ? "" : urlParams.get('name').charAt(0).toUpperCase() + urlParams.get('name').slice(1);
   const name = urlParams.get('name') === null ? "" : urlParams.get('name');
 
-  const rarity = urlParams.get('rarity');
-  const color = urlParams.get('color');
-  const type = urlParams.get('type');
-  const set = urlParams.get('set');
-  const page = urlParams.get('page');
-
   const namePart = urlParams.get('name') === null ? "" : or(and(where('name', '>=', capitalized), where('name', '<=', capitalized + '\uf8ff')), where('nameArray', 'array-contains-any', name.split(' ')));
-  const rarityPart = urlParams.get('rarity') === null ? "" : where('rarity', '==', rarity);
-  const colorPart = urlParams.get('color') === null ? "" : where('color', '==', color);
-  const typePart = urlParams.get('type') === null ? "" : where('type', '==', type);
-  const setPart = urlParams.get('set') === null ? "" : where('set', '==', set);
-  const pagePart = urlParams.get('page') === null ? 0 : parseInt(page);
+  const rarityPart = urlParams.get('rarity') === null ? "" : where('rarity', '==', urlParams.get('rarity'));
+  const colorPart = urlParams.get('color') === null ? "" : where('color', '==', urlParams.get('color'));
+  const typePart = urlParams.get('type') === null ? "" : where('type', '==', urlParams.get('type'));
+  const setPart = urlParams.get('set') === null ? "" : where('set', '==', urlParams.get('set'));
+  const pagePart = urlParams.get('page') === null ? 0 : parseInt(urlParams.get('page'));
 
   const queryParts = [namePart, rarityPart, colorPart, typePart, setPart].filter(part => part !== "");
 
@@ -117,11 +111,23 @@ function displayCards() {
 }
 
 async function handleAddToCartClick(card) {
-  // Will need to implement this logic later
+  // holds needed card info for the cart
+  class cardInfo {
+    constructor(name, quantity, picURL, price) {
+      this.name = name;
+      this.quantity = quantity;
+      this.picURL = picURL;
+      this.price = price;
+    }
+  }
+  const cardToSave = new cardInfo(card.name, 1, card.picURL, card.price);
+
+  // append the card to the session storage
+  const cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+  cart.push(cardToSave);
+  sessionStorage.setItem('cart', JSON.stringify(cart));
   console.log('Added to cart:', card.name);
 }
-
-
 
 searchButton.addEventListener('click', async () => {
   const searchTerm = searchInput.value.trim();
