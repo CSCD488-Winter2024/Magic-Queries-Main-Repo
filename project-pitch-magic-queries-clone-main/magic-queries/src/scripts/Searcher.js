@@ -100,7 +100,14 @@ function displayCards() {
     addToCartButton.classList.add('add-to-cart');
     addToCartButton.addEventListener('click', event => {
       event.stopPropagation(); // Prevent the click event from bubbling to the card element
-      handleAddToCartClick(card);
+      // prompt the user enter the quantity of the card out of the total quantity
+      const quantity = prompt(`Enter the quantity of ${card.name} you would like to add to your cart out of ${card.quantity}`);
+      // check if the quantity is valid
+      if (quantity && quantity > 0 && quantity <= card.quantity) {
+        handleAddToCartClick(card, quantity);
+      } else {
+        alert('Invalid quantity');
+      }
     });
 
     cardElement.appendChild(imgElement);
@@ -112,7 +119,7 @@ function displayCards() {
 
 }
 
-async function handleAddToCartClick(card) {
+async function handleAddToCartClick(card, quantity) {
   // holds needed card info for the cart
   class cardInfo {
     constructor(name, quantity, picURL, price) {
@@ -122,7 +129,7 @@ async function handleAddToCartClick(card) {
       this.price = price;
     }
   }
-  const cardToSave = new cardInfo(card.name, 1, card.picURL, card.price);
+  const cardToSave = new cardInfo(card.name, quantity, card.picURL, card.price);
 
   // append the card to the session storage
   const cart = JSON.parse(sessionStorage.getItem('cart')) || [];
