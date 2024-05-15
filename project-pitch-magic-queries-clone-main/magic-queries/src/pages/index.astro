@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 const websiteName = 'Merlyns MTG Search';
 ---
 
@@ -12,22 +13,7 @@ const websiteName = 'Merlyns MTG Search';
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet"/>
 </head>
 
-<header class= "bg-green-700">
-	<div class ="flex justify-start">
-		<img src="https://images.squarespace-cdn.com/content/v1/615c96de44cb036b04b47f25/57ead580-4847-4aad-826d-3cf8f50a0d57/merlyns_transparent.png?format=125w" alt="Merylns Logo">
-	</div>
-	
-	<div class ="absolute top-0 right-0">
-		<ul class=" text-blue-900 container mx-auto grid gap-4 md:grid-cols-3 md:grid-cols-2">
-			<li class=" block text-center text-xl ring-4 ring-gray-800 bg-blue-200 bg-opacity-50 ring-opacity-25 w-20 h-8 rounded-sm"><a href="/">Home</a></li>
-			<li class=" block text-center text-xl ring-4 ring-gray-800 bg-blue-200 bg-opacity-50 ring-opacity-25 w-20 h-8 rounded-sm"><a href="/contact-form/">Contact</a></li>
-			<li class=" block text-center text-xl ring-4 ring-gray-800 bg-blue-200 bg-opacity-50 ring-opacity-25 w-20 h-8 rounded-sm"><a href="/cart/">Cart</a></li>
-		</ul>
-	</div>
-
-
-
-</header>
+<Header />
 
 <Layout title="Layout">
 	<main class= "bg-gray-50 min-h-screen grid grid-cols-3 gap-3">
@@ -125,13 +111,12 @@ const websiteName = 'Merlyns MTG Search';
 	
 	</main>
 
-	<body>
+	<!-- <body>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
-	</body>
+	</body> -->
 
-	<footer class= "bg-gray-50">
-        <p>&copy; Merlyn's Comics and Games</p>
-    </footer>
+	<Footer />
+    
 	<script> 
 		import "../scripts/Searcher.js";
 	</script>

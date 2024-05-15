@@ -1,9 +1,10 @@
 ---
-import Navigation from '../components/Navigation.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 const websiteName = 'Cart';
 ---
-
-<Navigation websiteName={websiteName} />
+<Header />
+<!-- <Navigation websiteName={websiteName} /> -->
 <main>
     <head>
         <meta name = "viewport" content = "width = device-width, initial-scale = 1">
@@ -13,6 +14,7 @@ const websiteName = 'Cart';
         <h1>Shopping Cart</h1>
         <div id="cart-container"></div>
     </body>
+    <Footer />
     <script> 
 		import "../scripts/Cart.js";
 	</script>
