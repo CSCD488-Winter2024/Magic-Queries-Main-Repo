@@ -24,7 +24,7 @@ These are the major things that we are looking to do for Mr. Waite. However, dur
 
 In the codespace terminal:
 
-  - Change working directory to magic-queries by typing: cd project-description-user-stories-and-glossary-magic-queries/magic-queries
+  - Change working directory to magic-queries by typing: cd project-pitch-magic-queries-clone-main/magic-queries
   - Type "npm run dev"
 
 ## Functionality

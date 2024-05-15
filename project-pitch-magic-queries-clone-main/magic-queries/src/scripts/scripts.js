@@ -3,6 +3,7 @@ const apiUrl = 'https://api.scryfall.com'; // Base URL of the Scryfall API
 const searchInput = document.getElementById('searchInput');
 const searchButton = document.getElementById('searchButton');
 const cardContainer = document.getElementById('cardContainer');
+const checkBoxes = document.getElementById('checkBoxes');
 
 async function fetchMagicCards(cardName) {
   try {
@@ -85,4 +86,8 @@ searchInput.addEventListener("keypress", function (event) {
   if (event.key === 'Enter') { 
       searchButton.click(); 
   } 
-}); 
+});
+
+
+
+
