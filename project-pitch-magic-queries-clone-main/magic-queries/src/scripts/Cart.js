@@ -47,7 +47,7 @@ function displayCart() {
         // add remove button with tailwind styling
         const removeButton = document.createElement('button');
         removeButton.textContent = 'Remove';
-        removeButton.classList.add('border', 'border-red-500', 'text-red-500', 'rounded-md', 'px-4', 'py-2', 'm-2');
+        removeButton.classList.add('border', 'border-red-500', 'text-red-500', 'rounded-md', 'px-4', 'py-2', 'm-2', 'hover:bg-red-100');
         removeButton.classList.add('remove');
         removeButton.addEventListener('click', () => removeCard(card.name));
         cardDiv.appendChild(removeButton);
@@ -64,8 +64,22 @@ function displayCart() {
     totalPriceDiv.classList.add('total-price');
     totalPriceDiv.innerHTML = `<h3>Total Price: $${totalPrice}</h3>`;
     // add border to the total price div using tailwind
-    totalPriceDiv.classList.add('border', 'border-green-500', 'text-green-500', 'rounded-md', 'px-4', 'py-2', 'm-2');
+    totalPriceDiv.classList.add('border', 'border-green-800', 'text-green-800', 'rounded-md', 'px-4', 'py-2', 'm-2', 'bg-green-100');
+    // move total price to the right of the cart
+    totalPriceDiv.style.float = 'left';
     cartContainer.appendChild(totalPriceDiv);
+
+    //add a checkout button
+    const checkoutButton = document.createElement('button');
+    checkoutButton.textContent = 'Checkout';
+    checkoutButton.classList.add('border', 'border-blue-500', 'text-blue-500', 'rounded-md', 'px-4', 'py-2', 'm-2', 'hover:bg-blue-100');
+    checkoutButton.classList.add('checkout');
+    checkoutButton.addEventListener('click', () => alert('Checkout clicked'));
+    cartContainer.appendChild(checkoutButton);
+
+    //move checkout button to the right of the cart
+    checkoutButton.style.float = 'right';
+
 }
 
 displayCart();
