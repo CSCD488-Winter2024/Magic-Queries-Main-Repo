@@ -1,8 +1,9 @@
 ---
 import Navigation from '../components/Navigation.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 const websiteName = 'Contact-Form';
 ---
-
 
 <html lang="en">
     <head>
@@ -13,10 +14,10 @@ const websiteName = 'Contact-Form';
     </head>
     <body>
 
-        <Navigation />
+        <Header />
 
         <div class = "container">
-    </div>        <h2>Email Form to Order Cards</h2>
+            <h2>Email Form to Order Cards</h2>
             <form action = "email.php" method = "post">
                 <div class = "form-group">
                     <label for = "name">Name:</label>
@@ -37,4 +38,6 @@ const websiteName = 'Contact-Form';
                 <button type = "submit" class = "btn btn-success">Submit</button>
             </form>
         </div>
+    </body>
+    <Footer />
 </html>
