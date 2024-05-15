@@ -137,9 +137,10 @@ async function handleAddToCartClick(card, quantity) {
   const cardIndex = cart.findIndex(c => c.name === cardToSave.name);
   if (cardIndex !== -1) {
     // if the card is already in the cart, add the quantity to the existing quantity
-    cart[cardIndex].quantity += quantity;
+    cart[cardIndex].quantity = parseInt(cart[cardIndex].quantity) + parseInt(cardToSave.quantity);
+    // check if the quantity is greater than the total quantity of the card
     if (cart[cardIndex].quantity > card.quantity) {
-      card[cardIndex].quantity = card.quantity;
+      cart[cardIndex].quantity = card.quantity;
     }
     sessionStorage.setItem('cart', JSON.stringify(cart));
     console.log('Added to cart:', card.name);
