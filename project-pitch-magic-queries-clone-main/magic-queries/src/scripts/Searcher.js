@@ -133,19 +133,38 @@ async function handleAddToCartClick(card, quantity) {
 
   // append the card to the session storage
   const cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+  // check if the card is already in the cart
+  const cardIndex = cart.findIndex(c => c.name === cardToSave.name);
+  if (cardIndex !== -1) {
+    // if the card is already in the cart, add the quantity to the existing quantity
+    cart[cardIndex].quantity += quantity;
+    if (cart[cardIndex].quantity > card.quantity) {
+      card[cardIndex].quantity = card.quantity;
+    }
+    sessionStorage.setItem('cart', JSON.stringify(cart));
+    console.log('Added to cart:', card.name);
+    return;
+  }
   cart.push(cardToSave);
   sessionStorage.setItem('cart', JSON.stringify(cart));
   console.log('Added to cart:', card.name);
 }
 
+// Search button click event listener
 searchButton.addEventListener('click', async () => {
   const searchTerm = searchInput.value.trim();
   // add search pramas to the URL and the color blue
   const url = new URL(window.location.href);
   url.searchParams.set('name', searchTerm);
+
+  // if search is empty, remove the search pramas from the URL
+  if (!searchTerm) {
+    url.searchParams.delete('name');
+  }
+
   //url.searchParams.set('color', 'U');
   window.history.pushState({}, '', url);
-  if (searchTerm) {
+  if (searchTerm || url.searchParams.get('rarity') || url.searchParams.get('color') || url.searchParams.get('type') || url.searchParams.get('set')) {
     fetchMagicCards();
   }
 });
@@ -162,6 +181,25 @@ searchInput.addEventListener("keypress", function (event) {
     searchButton.click();
   }
 });
+
+// add an event listener to the color checkboxes
+const colorCheckboxes = document.getElementsByClassName('color-checkbox');
+for (let i = 0; i < colorCheckboxes.length; i++) {
+  colorCheckboxes[i].addEventListener('change', function () {
+    const url = new URL(window.location.href);
+    const checkedColors = Array.from(document.querySelectorAll('.color-checkbox:checked')).map(checkbox => checkbox.value);
+    if (checkedColors.length > 0) {
+      url.searchParams.set('color', checkedColors.sort().join(''));
+    } else {
+      url.searchParams.delete('color');
+    }
+    window.history.pushState({}, '', url);
+    //fetchMagicCards();
+  });
+}
+
+// move the card container left so it aligns better with the search box
+cardContainer.style.marginLeft = '-20px';
 
 // Check if there is a search query in the URL
 const urlParams = new URLSearchParams(window.location.search);
