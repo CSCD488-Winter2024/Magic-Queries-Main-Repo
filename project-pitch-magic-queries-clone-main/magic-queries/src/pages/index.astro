@@ -24,6 +24,9 @@ const websiteName = 'Merlyns MTG Search';
 			<li class=" block text-center text-xl ring-4 ring-gray-800 bg-blue-200 bg-opacity-50 ring-opacity-25 w-20 h-8 rounded-sm"><a href="/cart/">Cart</a></li>
 		</ul>
 	</div>
+
+
+
 </header>
 
 <Layout title="Layout">
@@ -32,42 +35,41 @@ const websiteName = 'Merlyns MTG Search';
 		<!-- Start of Sidebar -->
 		<div class="h-screen sticky top-0">
 			<!-- Start of Color checkboxes -->
-			<div id="color-checkbox" class="m-4 flex items-center">
+			<div class="m-4 flex items-center">
 				<ul class="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
    					<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
         				<div class="flex items-center ps-3">
-        	    			<input id="white-checkbox" type="checkbox" value="W" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+        	    			<input id="white-checkbox" type="checkbox" value="W" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500 color-checkbox">
         	    			<label for="white-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">White</label>
         				</div>
     				</li>
     				<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
         				<div class="flex items-center ps-3">
-        	    			<input id="blue-checkbox" type="checkbox" value="U" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+        	    			<input id="blue-checkbox" type="checkbox" value="U" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500 color-checkbox">
         	    			<label for="blue-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Blue</label>
         				</div>
     				</li>
     				<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
         				<div class="flex items-center ps-3">
-        	    			<input id="black-checkbox" type="checkbox" value="B" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+        	    			<input id="black-checkbox" type="checkbox" value="B" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500 color-checkbox">
         	    			<label for="black-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Black</label>
         				</div>
     				</li>
     				<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
         				<div class="flex items-center ps-3">
-        	    			<input id="red-checkbox" type="checkbox" value="R" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+        	    			<input id="red-checkbox" type="checkbox" value="R" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500 color-checkbox">
         	    			<label for="red-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Red</label>
         				</div>
     				</li>
 					<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
         				<div class="flex items-center ps-3">
-
-        	    			<input id="green-checkbox" type="checkbox" value="G" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+        	    			<input id="green-checkbox" type="checkbox" value="G" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500 color-checkbox">
         	    			<label for="green-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Green</label>
         				</div>
     				</li>
 					<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
         				<div class="flex items-center ps-3">
-        	    			<input id="colorless-checkbox" type="checkbox" value="C" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+        	    			<input id="colorless-checkbox" type="checkbox" value="C" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500 color-checkbox">
         	    			<label for="colorless-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Colorless</label>
         				</div>
     				</li>

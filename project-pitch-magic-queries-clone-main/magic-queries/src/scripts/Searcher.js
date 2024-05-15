@@ -1,5 +1,4 @@
 const apiUrl = 'https://api.scryfall.com'; // Base URL of the Scryfall API
-import { colorForIntegration } from 'astro/runtime/client/dev-toolbar/apps/utils/icons.js';
 import { initializeApp } from 'firebase/app';
 import { getFirestore, doc, setDoc, getDoc, where, query, getDocs, collection, or, and, limit, startAfter } from "firebase/firestore";
 
@@ -212,52 +211,3 @@ if (searchQuery) {
 } else {
   fetchMagicCards();
 }
-
-
-searchButton.addEventListener('click', async () => {
-  const searchTerm = searchInput.value.trim();
-  const colorSearch = handleColorCheckboxClick();
-  // if (colorSearch == '') {
-  //   const url = new URL(window.location.href);
-  //   url.searchParams.set('name', searchTerm);
-  //   window.history.pushState({}, '', url);
-  //   if (searchTerm) {
-  //     fetchMagicCards();
-  //   }
-  // }
-  // add search pramas to the URL and the color blue
-  const url = new URL(window.location.href);
-  url.searchParams.set('name', searchTerm);
-  url.searchParams.set('color', colorSearch);
-  window.history.pushState({}, '', url);
-  if (searchTerm) {
-    fetchMagicCards();
-  }
-});
-
-async function handleColorCheckboxClick() {
-  var white = document.getElementById('white-checkbox');
-  var blue = document.getElementById('blue-checkbox');
-  var black = document.getElementById('black-checkbox');
-  var red = document.getElementById('red-checkbox');
-  var green = document.getElementById('green-checkbox');
-  var colorless = document.getElementById('colorless-checkbox');
-
-  if (white.checked) {
-    return 'W';
-  } else if (blue.checked) {
-    return 'U';
-  } else if (black.checked) {
-    return 'B';
-  } else if (red.checked) {
-    return 'R';
-  } else if (green.checked) {
-    return 'G';
-  } else if (colorless.checked) {
-    return 'C';
-  } else {
-    return '';
-  }
-}
-
-
