@@ -79,7 +79,7 @@ function getScryfallBulkData() {
 
 // read allMagicCards.json
 function readAllMagicCards(excelCardList) {
-    fetch('oracle-cards-20240417210222.json')
+    fetch('allMagicCards.json')
     .then(response => response.json())
     .then(data => {
         var cardList = [];
@@ -109,11 +109,11 @@ function readAllMagicCards(excelCardList) {
                 if (excelCard.name === card.name && excelCard.set === card.set) {
                     // combine excel and scryfall data
                     ///////////////////////////////////////////////////////////////////////////////////////////////////////
-                    combinedCard.push(new cardInfo(excelCard.set, excelCard.name, card.color, excelCard.rarity, excelCard.quantity, card.picURL, card.type, card.price));
-                    console.log(combinedCard);
+                    combinedCard.push(new cardInfo(excelCard.set, excelCard.name, card.color, excelCard.rarity, excelCard.quantity, card.picURL, card.type.split(' ')[0], card.price));
                 }
             });
         });
+        console.log(combinedCard);
         writeDataToFirebase(combinedCard);
     });
 }
@@ -212,7 +212,11 @@ function searchDatabase(name, rarity, color, type, set, page){
 
 //getDatabaseCards();
 
-//readExcelFile('Core Set 2019.xlsx');
-//readExcelFile('Core Set 2020.xlsx');
-//readExcelFile('Core Set 2021.xlsx');
+//readExcelFile('Core 2019.xlsx');
+//readExcelFile('Core 2020.xlsx');
+//readExcelFile('Core 2021.xlsx');
+//readExcelFile('4th.xlsx');
+//readExcelFile('Dragons of Tarkir.xlsx');
+//readExcelFile('Eldritch Moon.xlsx');
+//readExcelFile('Eternal Masters.xlsx');
 //searchDatabase('of', '', '', '', '', '');
