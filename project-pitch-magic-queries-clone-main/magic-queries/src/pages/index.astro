@@ -62,37 +62,42 @@ const websiteName = 'Merlyns MTG Search';
 				</ul>
 			</div>
 			<!-- End of Color checkboxes -->
-			<!-- Start of Dropdown menu -->
-			<div class="m-4 flex items-center">
-				<button id="dropdownCheckboxButton" data-dropdown-toggle="dropdownDefaultCheckbox" class=" text-white dark:bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-blue-800" type="button" items-center >Dropdown Checkbox for Sets <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-					<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-					</svg>
-				</button>
+			<!-- Start of Rarity field -->
+			<div class="m-4 flex items-center field">
+				<label for="rarity" class="text-sm font-medium">Rarity</label>
+				<select id="raritySelect" class="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+					<option value="all">All</option>
+					<option value="C">Common</option>
+					<option value="U">Uncommon</option>
+					<option value="R">Rare</option>
+					<option value="M">Mythic</option>
+				</select>
+			</div>
+			<!-- End of Rarity field -->
 			
-				<div id="dropdownDefaultCheckbox" class="z-10 hidden w-48 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600">
-					<ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownCheckboxButton">
-					<li>
-						<div class="flex items-center">
-						<input id="checkbox-item-1" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-						<label for="checkbox-item-1" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Type A</label>
-						</div>
-					</li>
-					<li>
-						<div class="flex items-center">
-							<input checked id="checkbox-item-2" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-							<label for="checkbox-item-2" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Type B</label>
-						</div>
-					</li>
-					<li>
-						<div class="flex items-center">
-						<input id="checkbox-item-3" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-						<label for="checkbox-item-3" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Type C</label>
-						</div>
-					</li>
-					</ul>
-				</div>
+			<!-- Start of Type field -->
+			<div class="m-4 flex items-center field">
+				<label for="type" class="text-sm font-medium">Type</label>
+				<select id="typeSelect" class="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+					<option value="all">All</option>
+					<option value="Creature">Creature</option>
+					<option value="Instant">Instant</option>
+					<option value="Sorcery">Sorcery</option>
+					<option value="Enchantment">Enchantment</option>
+					<option value="Artifact">Artifact</option>
+					<option value="Planeswalker">Planeswalker</option>
+					<option value="Land">Land</option>
+				</select>
+			</div>
+			<!-- End of Type field -->
+
+			<!-- Start of Set field -->
+			<div class="m-4 flex items-center field">
+				<label for="set" class="text-sm font-medium">Set</label>
+				<select id="setSelect" class="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+					<option value="all">All</option>
+				</select>
 			</div>	
-			<!-- End of Dropdown menu -->
 
 		</div>
 		<!-- End of Sidebar -->

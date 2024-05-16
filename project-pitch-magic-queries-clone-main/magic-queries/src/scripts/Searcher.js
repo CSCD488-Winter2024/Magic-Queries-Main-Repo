@@ -96,7 +96,7 @@ function displayCards() {
     const addToCartButton = document.createElement('button');
     addToCartButton.textContent = 'Add to Cart';
     // add border to the button using tailwind
-    addToCartButton.classList.add('border', 'border-blue-500', 'text-blue-500', 'rounded-md', 'px-4', 'py-2', 'm-2', 'hover:bg-blue-100');
+    addToCartButton.classList.add('border', 'border-blue-500', 'text-blue-500', 'rounded-md', 'px-4', 'py-2', 'm-2');
     addToCartButton.classList.add('add-to-cart');
     addToCartButton.addEventListener('click', event => {
       event.stopPropagation(); // Prevent the click event from bubbling to the card element
@@ -199,8 +199,88 @@ for (let i = 0; i < colorCheckboxes.length; i++) {
   });
 }
 
+// add an event listener to the rarity field
+const raritySelect = document.getElementById('raritySelect');
+raritySelect.addEventListener('change', function () {
+  const url = new URL(window.location.href);
+  const rarity = raritySelect.value;
+  if(rarity === 'all') {
+    url.searchParams.delete('rarity');
+    window.history.pushState({}, '', url);
+    return;
+  }
+
+  if (rarity) {
+    url.searchParams.set('rarity', rarity);
+  } else {
+    url.searchParams.delete('rarity');
+  }
+  window.history.pushState({}, '', url);
+  //fetchMagicCards();
+});
+
+// add an event listener to the type field
+const typeSelect = document.getElementById('typeSelect');
+typeSelect.addEventListener('change', function () {
+  const url = new URL(window.location.href);
+  const type = typeSelect.value;
+  if(type === 'all') {
+    url.searchParams.delete('type');
+    window.history.pushState({}, '', url);
+    return;
+  }
+
+  if (type) {
+    url.searchParams.set('type', type);
+  } else {
+    url.searchParams.delete('type');
+  }
+  window.history.pushState({}, '', url);
+  //fetchMagicCards();
+});
+
+// add an event listener to the set field
+const setSelect = document.getElementById('setSelect');
+setSelect.addEventListener('change', function () {
+  const url = new URL(window.location.href);
+  const set = setSelect.value;
+  if(set === 'all') {
+    url.searchParams.delete('set');
+    window.history.pushState({}, '', url);
+    return;
+  }
+
+  if (set) {
+    url.searchParams.set('set', set);
+  } else {
+    url.searchParams.delete('set');
+  }
+  window.history.pushState({}, '', url);
+  //fetchMagicCards();
+});
+
+// get set names from scryfall
+function getSetNames() {
+  fetch(`${apiUrl}/sets`)
+    .then(response => response.json())
+    .then(data => {
+      const setSelect = document.getElementById('setSelect');
+      // sort the sets by aphabetical order
+      data.data.sort((a, b) => a.name.localeCompare(b.name));
+      data.data.forEach(set => {
+        const option = document.createElement('option');
+        option.value = set.name;
+        option.text = set.name;
+        setSelect.appendChild(option);
+      });
+    });  
+}
+
+
 // move the card container left so it aligns better with the search box
 cardContainer.style.marginLeft = '-20px';
+
+getSetNames();
 
 // Check if there is a search query in the URL
 const urlParams = new URLSearchParams(window.location.search);
