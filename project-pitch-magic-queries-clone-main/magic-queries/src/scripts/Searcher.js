@@ -122,14 +122,15 @@ function displayCards() {
 async function handleAddToCartClick(card, quantity) {
   // holds needed card info for the cart
   class cardInfo {
-    constructor(name, quantity, picURL, price) {
+    constructor(name, quantity, picURL, price, quantityInStock) {
       this.name = name;
       this.quantity = quantity;
       this.picURL = picURL;
       this.price = price;
+      this.quantityInStock = quantityInStock;
     }
   }
-  const cardToSave = new cardInfo(card.name, quantity, card.picURL, card.price);
+  const cardToSave = new cardInfo(card.name, quantity, card.picURL, card.price, card.quantity);
 
   // append the card to the session storage
   const cart = JSON.parse(sessionStorage.getItem('cart')) || [];

@@ -54,6 +54,37 @@ function displayCart() {
 
         cartContainer.appendChild(cardDiv);
         totalPrice += card.price * card.quantity;
+
+        // add decrease button with tailwind styling
+        const decreaseButton = document.createElement('button');
+        decreaseButton.textContent = '-';
+        decreaseButton.classList.add('border', 'border-blue-500', 'text-blue-500', 'rounded-md', 'px-4', 'py-2', 'm-2', 'hover:bg-blue-100');
+        decreaseButton.classList.add('decrease');
+        decreaseButton.addEventListener('click', () => {
+            if (card.quantity <= 1) {
+                removeCard(card.name);
+                return;
+            }
+            card.quantity--;
+            sessionStorage.setItem('cart', JSON.stringify(cart));
+            displayCart();
+        });
+        cardDiv.appendChild(decreaseButton);
+
+
+        // add increase button
+        const increaseButton = document.createElement('button');
+        increaseButton.textContent = '+';
+        increaseButton.classList.add('border', 'border-blue-500', 'text-blue-500', 'rounded-md', 'px-4', 'py-2', 'm-2', 'hover:bg-blue-100');
+        increaseButton.classList.add('increase');
+        increaseButton.addEventListener('click', () => {
+            if (card.quantity >= card.quantityInStock) return;
+            card.quantity++;
+            sessionStorage.setItem('cart', JSON.stringify(cart));
+            displayCart();
+        });
+        cardDiv.appendChild(increaseButton);
+
     });
 
     // round the total price to 2 decimal places
@@ -62,7 +93,7 @@ function displayCart() {
     // add total price to the cart and style it with tailwind
     const totalPriceDiv = document.createElement('div');
     totalPriceDiv.classList.add('total-price');
-    totalPriceDiv.innerHTML = `<h3>Total Price: $${totalPrice}</h3>`;
+    totalPriceDiv.innerHTML = `<h3>Total Price: $${totalPrice.toFixed(2)}</h3>`;
     // add border to the total price div using tailwind
     totalPriceDiv.classList.add('border', 'border-green-800', 'text-green-800', 'rounded-md', 'px-4', 'py-2', 'm-2', 'bg-green-100');
     // move total price to the right of the cart
