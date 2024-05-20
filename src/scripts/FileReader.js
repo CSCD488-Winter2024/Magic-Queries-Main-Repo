@@ -9,12 +9,12 @@ const firebaseApp = initializeApp({
     authDomain: "magicproject-77014.firebaseapp.com",
     projectId: "magicproject-77014",
     storageBucket: "magicproject-77014.appspot.com",
-    messagingSenderId: "1023897851903",  
+    messagingSenderId: "1023897851903",
     appId: "1:1023897851903:web:bbcd8bdf3e81c0ac82f9ca",
 })
 
 class cardInfo {
-    constructor(set, name, color, rarity, quantity, picURL, type, price){
+    constructor(set, name, color, rarity, quantity, picURL, type, price) {
         this.set = set;
         this.name = name;
         this.color = color;
@@ -57,135 +57,137 @@ function writeDataToFirebase(cardList) {
         console.log(docData);
         setDoc(docRef, docData);
     });
-}    
+}
 
 // get bulk data from scryfall
 function getScryfallBulkData() {
     return fetch(`${apiUrl}/bulk-data`)
-    .then(response => response.json())
-    .then(data => {
-        const allMagicCardsURL = data.data[0].download_uri;
-        return fetch(allMagicCardsURL)
         .then(response => response.json())
         .then(data => {
-            var cardList = [];
-            data.forEach(card => {
-                const set = card['set_name'];
-                const name = card['name'];
-            });
+            const allMagicCardsURL = data.data[0].download_uri;
+            return fetch(allMagicCardsURL)
+                .then(response => response.json())
+                .then(data => {
+                    var cardList = [];
+                    data.forEach(card => {
+                        const set = card['set_name'];
+                        const name = card['name'];
+                    });
+                });
         });
-    });
 }
 
 // read allMagicCards.json
 function readAllMagicCards(excelCardList) {
     fetch('allMagicCards.json')
-    .then(response => response.json())
-    .then(data => {
-        var cardList = [];
-        data.forEach(card => {
-            // get card info
-            const set = card['set_name'];
-            const name = card['name'];
-            // get the color array from the card
-            const color = card['color_identity'];
-            const rarity = card['rarity'];
-            const quantity = "";
-            // try to get image_uris.png, if not, leave it empty
-            try {
-                var picURL = card['image_uris']['png'];
-            } catch (error) {
-                var picURL = "";
-            }
-            const type = card.type_line;
-            const price = card.prices.usd;
-            cardList.push(new cardInfo(set, name, color, rarity, quantity, picURL, type, price));
-        });
-        console.log("Read allMagicCards.json successfully.");
-        // loop through excelCardList and find the corresponding card in cardList
-        const combinedCard = [];
-        excelCardList.forEach(excelCard => {
-            cardList.forEach(card => {
-                if (excelCard.name === card.name && excelCard.set === card.set) {
-                    // combine excel and scryfall data
-                    ///////////////////////////////////////////////////////////////////////////////////////////////////////
-                    combinedCard.push(new cardInfo(excelCard.set, excelCard.name, card.color, excelCard.rarity, excelCard.quantity, card.picURL, card.type.split(' ')[0], card.price));
+        .then(response => response.json())
+        .then(data => {
+            var cardList = [];
+            data.forEach(card => {
+                // get card info
+                const set = card['set_name'];
+                const name = card['name'];
+                // get the color array from the card
+                const color = card['color_identity'];
+                const rarity = card['rarity'];
+                const quantity = "";
+                // try to get image_uris.png, if not, leave it empty
+                try {
+                    var picURL = card['image_uris']['png'];
+                } catch (error) {
+                    var picURL = "";
                 }
+                const type = card.type_line;
+                const price = card.prices.usd;
+                cardList.push(new cardInfo(set, name, color, rarity, quantity, picURL, type, price));
             });
+            console.log("Read allMagicCards.json successfully.");
+            // loop through excelCardList and find the corresponding card in cardList
+            const combinedCard = [];
+            excelCardList.forEach(excelCard => {
+                cardList.forEach(card => {
+                    if (excelCard.name === card.name && excelCard.set === card.set) {
+                        // combine excel and scryfall data
+                        ///////////////////////////////////////////////////////////////////////////////////////////////////////
+                        combinedCard.push(new cardInfo(excelCard.set, excelCard.name, card.color, excelCard.rarity, excelCard.quantity, card.picURL, card.type.split(' ')[0], card.price));
+                    }
+                });
+            });
+            console.log(combinedCard);
+            writeDataToFirebase(combinedCard);
         });
-        console.log(combinedCard);
-        writeDataToFirebase(combinedCard);
-    });
 }
 
 function readExcelFile(fileURL) {
     fetch(fileURL)
-    .then(response => response.arrayBuffer())
-    .then(buffer => {
-        var workbook = XLSX.read(buffer, { type: 'array' });
+        .then(response => response.arrayBuffer())
+        .then(buffer => {
+            var workbook = XLSX.read(buffer, { type: 'array' });
 
-        // Assuming you have only one sheet in your Excel file
-        var sheet = workbook.Sheets[workbook.SheetNames[0]];
+            // Assuming you have only one sheet in your Excel file
+            var sheet = workbook.Sheets[workbook.SheetNames[0]];
 
-        // Convert the sheet to JSON
-        var jsonData = XLSX.utils.sheet_to_json(sheet);
+            // Convert the sheet to JSON
+            var jsonData = XLSX.utils.sheet_to_json(sheet);
 
-        // push data into cardInfo object
-        var cardList = [];
-        jsonData.forEach(card => {
-        // get card info
-        // get the set name from the 1st column
-        const set = card[Object.keys(card)[0]];
-        // get the name of the card from the 2nd column
-        const name = card[Object.keys(card)[1]];
-        const color = card['Color'];
-        const rarity = card['Rarity'];
-        // get last column of the excel file as quantity
-        const quantity = card[Object.keys(card)[Object.keys(card).length - 1]];
-        const picURL = card['PicURL'];
-        const type = card['Type'];
-        const price = card['Price'];
+            // push data into cardInfo object
+            var cardList = [];
+            jsonData.forEach(card => {
+                // get card info
+                // get the set name from the 1st column
+                const set = card[Object.keys(card)[0]];
+                // get the name of the card from the 2nd column
+                var name = card[Object.keys(card)[1]];
+                const color = card['Color'];
+                const rarity = card['Rarity'];
+                // get last column of the excel file as quantity
+                const quantity = card[Object.keys(card)[Object.keys(card).length - 1]];
+                const picURL = card['PicURL'];
+                const type = card['Type'];
+                const price = card['Price'];
 
-        // if quantity is empty, 
-        if (quantity === '' || quantity === undefined) {
-            return;            
-        }
-        // try parsing quantity to number if it fails, skip the card
-        try {
-            const cardVal = parseInt(quantity);
-            // if cardVal is NaN, skip the card
-            if (isNaN(cardVal)) {
-                return;
-            }
-        } catch (error) {
-            return;
-        }
+                // if quantity is empty, 
+                if (quantity === '' || quantity === undefined) {
+                    return;
+                }
 
-        // if name is empty, skip the card
-        if (name === '' || name === undefined) {
-            return;
-        }
+                // try parsing quantity to number if it fails, skip the card
+                const cardVal = parseInt(quantity);
+                // if cardVal is NaN, skip the card
+                if (isNaN(cardVal)) {
+                    return;
+                }
 
-        // create card object
-        const cardObj = new cardInfo(set, name, color, rarity, quantity, picURL, type, price);
-        cardList.push(cardObj);
-        // Print the card object to console
-        //console.log(cardObj);
+                // check if the name is a number, if it is, skip the card
+                if (!isNaN(name)) {
+                    name = card[Object.keys(card)[2]];
+                }
+
+                // if name is empty, skip the card
+                if (name === '' || name === undefined) {
+                    return;
+                }
+
+                // create card object
+                const cardObj = new cardInfo(set, name, color, rarity, quantity, picURL, type, price);
+                cardList.push(cardObj);
+                // Print the card object to console
+                //console.log(cardObj);
+            });
+
+            console.log("Read excel file successfully.");
+            readAllMagicCards(cardList);
+        })
+        .catch(error => {
+            console.error('Error fetching file:', error);
         });
-
-        console.log("Read excel file successfully.");
-        readAllMagicCards(cardList);
-    })
-    .catch(error => {
-        console.error('Error fetching file:', error);
-    });
 }
 
 var lastDoc = null;
 var prevQuery = null;
 var prevPage = null;
 
-function searchDatabase(name, rarity, color, type, set, page){
+function searchDatabase(name, rarity, color, type, set, page) {
     const firestore = getFirestore();
     name = name.toLowerCase();
     const capitalized = name.charAt(0).toUpperCase() + name.slice(1);
@@ -217,6 +219,6 @@ function searchDatabase(name, rarity, color, type, set, page){
 //readExcelFile('Core 2021.xlsx');
 //readExcelFile('4th.xlsx');
 //readExcelFile('Dragons of Tarkir.xlsx');
-//readExcelFile('Eldritch Moon.xlsx');
-//readExcelFile('Eternal Masters.xlsx');
+readExcelFile('Eldritch Moon.xlsx');
+readExcelFile('Eternal Masters.xlsx');
 //searchDatabase('of', '', '', '', '', '');
