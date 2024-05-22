@@ -15,7 +15,7 @@ const firebaseApp = initializeApp({
 const searchInput = document.getElementById('searchInput');
 const searchButton = document.getElementById('searchButton');
 const cardContainer = document.getElementById('cardContainer');
-const lastCardOnPage = [];
+var lastCardOnPage = [];
 
 function fetchMagicCards() {
   // get cards from the FireBase database
@@ -46,6 +46,8 @@ function fetchMagicCards() {
   }
 
   var myQuery;
+  console.log("Page part in url", urlParams.get('page'));
+  console.log("Page part", pagePart);
   if (pagePart === 0) {
     myQuery = query(collection(firestore, 'MagicCards'), and(...queryParts), orderBy('name'), limit(10));
   } else {
@@ -57,6 +59,7 @@ function fetchMagicCards() {
   if (sessionStorage.getItem('searchQuery') === JSON.stringify(queryParts) && sessionStorage.getItem('page') === pagePart.toString()) {
     console.log("Query matches previous query");
     console.log("Getting cards from session storage");
+    //console.log("My query", myQuery);
     displayCards();
     return;
   } else if (sessionStorage.getItem('searchQuery') !== JSON.stringify(queryParts) && sessionStorage.getItem('page') === pagePart.toString()) {
@@ -68,10 +71,18 @@ function fetchMagicCards() {
     myQuery = query(collection(firestore, 'MagicCards'), and(...queryParts), orderBy('name'), limit(10));
   }
 
+  console.log("My query", myQuery);
   var cardList = [];
   getDocs(myQuery).then(snapshot => {
     // store the last card on the page
+    if(snapshot.docs.length === 0) {
+      console.log("No cards found");
+      // remove cards from session storage and page
+      cardContainer.innerHTML = '';
+      return;
+    }
     lastCardOnPage.push(snapshot.docs[snapshot.docs.length - 1]);
+    sessionStorage.setItem('lastCardOnPage', JSON.stringify(lastCardOnPage));
     console.log("Last card on page", snapshot.docs[snapshot.docs.length - 1].data());
     // get the cards from the database
     snapshot.forEach(doc => {
@@ -82,6 +93,8 @@ function fetchMagicCards() {
     console.log("Done fetching cards from firebase");
     // store the search in session storage
     sessionStorage.setItem('search', JSON.stringify(cardList));
+    // delete search query from session storage
+    sessionStorage.removeItem('searchQuery');
     sessionStorage.setItem('searchQuery', JSON.stringify(queryParts));
     sessionStorage.setItem('page', pagePart);
     displayCards();
@@ -348,5 +361,27 @@ if (searchQuery) {
   searchInput.value = searchQuery;
   searchButton.click();
 } else {
+  // get the last card on the page from session storage
+  lastCardOnPage = JSON.parse(sessionStorage.getItem('lastCardOnPage')) || [];
+  // set html filter values to the last filter values
+  const color = urlParams.get('color');
+  const rarity = urlParams.get('rarity');
+  const type = urlParams.get('type');
+  const set = urlParams.get('set');
+  const colorCheckboxes = document.getElementsByClassName('color-checkbox');
+  for (let i = 0; i < colorCheckboxes.length; i++) {
+    if (color && color.includes(colorCheckboxes[i].value)) {
+      colorCheckboxes[i].checked = true;
+    }
+  }
+  if (rarity) {
+    document.getElementById('raritySelect').value = rarity;
+  }
+  if (type) {
+    document.getElementById('typeSelect').value = type;
+  }
+  if (set) {
+    document.getElementById('setSelect').value = set;
+  }
   fetchMagicCards();
 }
