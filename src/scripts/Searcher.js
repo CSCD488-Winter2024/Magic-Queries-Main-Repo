@@ -24,7 +24,6 @@ function fetchMagicCards() {
   const urlParams = new URLSearchParams(window.location.search);
   const capitalized = urlParams.get('name') === null ? "" : urlParams.get('name').charAt(0).toUpperCase() + urlParams.get('name').slice(1);
   const name = urlParams.get('name') === null ? "" : urlParams.get('name');
-
   const namePart = urlParams.get('name') === null ? "" : or(and(where('name', '>=', capitalized), where('name', '<=', capitalized + '\uf8ff')), where('nameArray', 'array-contains-any', name.split(' ')));
   const rarityPart = urlParams.get('rarity') === null ? "" : where('rarity', '==', urlParams.get('rarity'));
   const colorPart = urlParams.get('color') === null ? "" : where('color', '==', urlParams.get('color'));
@@ -34,54 +33,39 @@ function fetchMagicCards() {
 
   const queryParts = [namePart, rarityPart, colorPart, typePart, setPart].filter(part => part !== "");
 
-  if (urlParams.get('page') === null) {
-    const url = new URL(window.location.href);
-    url.searchParams.set('page', 0);
-    window.history.pushState({}, '', url);
-  }
-
   // if query is empty, add a default query, that fetches all cards that start with A
   if (queryParts.length === 0) {
+    console.log("No search query found");
     queryParts.push(where('name', '>=', 'A'), where('name', '<=', 'A\uf8ff'));
   }
 
   var myQuery;
-  console.log("Page part in url", urlParams.get('page'));
-  console.log("Page part", pagePart);
   if (pagePart === 0) {
     myQuery = query(collection(firestore, 'MagicCards'), and(...queryParts), orderBy('name'), limit(10));
   } else {
+    console.log("lastCardOnPage[" + (pagePart - 1) + "] =", lastCardOnPage[pagePart - 1].data());
     myQuery = query(collection(firestore, 'MagicCards'), and(...queryParts), orderBy('name'), startAfter(lastCardOnPage[pagePart - 1]), limit(10));
-  }
-  
-
-  // if the query matches the previous query, don't fetch again
-  if (sessionStorage.getItem('searchQuery') === JSON.stringify(queryParts) && sessionStorage.getItem('page') === pagePart.toString()) {
-    console.log("Query matches previous query");
-    console.log("Getting cards from session storage");
-    //console.log("My query", myQuery);
-    displayCards();
-    return;
-  } else if (sessionStorage.getItem('searchQuery') !== JSON.stringify(queryParts) && sessionStorage.getItem('page') === pagePart.toString()) {
-    // reset url to page 0
-    const url = new URL(window.location.href);
-    url.searchParams.set('page', 0);
-    window.history.pushState({}, '', url);
-    pagePart = 0;
-    myQuery = query(collection(firestore, 'MagicCards'), and(...queryParts), orderBy('name'), limit(10));
   }
 
   console.log("My query", myQuery);
   var cardList = [];
   getDocs(myQuery).then(snapshot => {
     // store the last card on the page
-    if(snapshot.docs.length === 0) {
+    if (snapshot.docs.length === 0) {
       console.log("No cards found");
       // remove cards from session storage and page
       cardContainer.innerHTML = '';
+      sessionStorage.removeItem('search');
+      console.log("Query parts", ...queryParts);
       return;
     }
-    lastCardOnPage.push(snapshot.docs[snapshot.docs.length - 1]);
+
+    if (lastCardOnPage.length === pagePart) {
+      lastCardOnPage.push(snapshot.docs[snapshot.docs.length - 1]);
+    } else {
+      lastCardOnPage[pagePart] = snapshot.docs[snapshot.docs.length - 1];
+    }
+
     sessionStorage.setItem('lastCardOnPage', JSON.stringify(lastCardOnPage));
     console.log("Last card on page", snapshot.docs[snapshot.docs.length - 1].data());
     // get the cards from the database
@@ -91,12 +75,8 @@ function fetchMagicCards() {
       // store doc reference in lastCardOnPage array
     });
     console.log("Done fetching cards from firebase");
-    // store the search in session storage
+    // store the cards in session storage
     sessionStorage.setItem('search', JSON.stringify(cardList));
-    // delete search query from session storage
-    sessionStorage.removeItem('searchQuery');
-    sessionStorage.setItem('searchQuery', JSON.stringify(queryParts));
-    sessionStorage.setItem('page', pagePart);
     displayCards();
   });
 }
@@ -229,6 +209,13 @@ searchButton.addEventListener('click', async () => {
   const url = new URL(window.location.href);
   url.searchParams.set('name', searchTerm);
 
+  // reset the last card on page
+  lastCardOnPage = [];
+  sessionStorage.setItem('lastCardOnPage', JSON.stringify(lastCardOnPage));
+
+  // make the page 0
+  url.searchParams.set('page', 0);
+
   // if search is empty, remove the search pramas from the URL
   if (!searchTerm) {
     url.searchParams.delete('name');
@@ -241,12 +228,14 @@ searchButton.addEventListener('click', async () => {
 });
 
 // Add event listener to search input to clear search results if input is empty
+/*
 searchInput.addEventListener('input', () => {
   // Clear search results if input is empty
   if (!searchInput.value.trim()) {
     cardContainer.innerHTML = '';
   }
 });
+*/
 
 // Add event listener to search input to allow user to press enter to search
 searchInput.addEventListener("keypress", function (event) {
@@ -356,32 +345,27 @@ getSetNames();
 
 // Check if there is a search query in the URL
 const urlParams = new URLSearchParams(window.location.search);
-const searchQuery = urlParams.get('name');
-if (searchQuery) {
-  searchInput.value = searchQuery;
-  searchButton.click();
-} else {
-  // get the last card on the page from session storage
-  lastCardOnPage = JSON.parse(sessionStorage.getItem('lastCardOnPage')) || [];
-  // set html filter values to the last filter values
-  const color = urlParams.get('color');
-  const rarity = urlParams.get('rarity');
-  const type = urlParams.get('type');
-  const set = urlParams.get('set');
-  const colorCheckboxes = document.getElementsByClassName('color-checkbox');
-  for (let i = 0; i < colorCheckboxes.length; i++) {
-    if (color && color.includes(colorCheckboxes[i].value)) {
-      colorCheckboxes[i].checked = true;
-    }
+// set html filter values to the last filter values
+const color = urlParams.get('color');
+const rarity = urlParams.get('rarity');
+const type = urlParams.get('type');
+const set = urlParams.get('set');
+const colorCheck = document.getElementsByClassName('color-checkbox');
+for (let i = 0; i < colorCheckboxes.length; i++) {
+  if (color && color.includes(colorCheckboxes[i].value)) {
+    colorCheck[i].checked = true;
   }
-  if (rarity) {
-    document.getElementById('raritySelect').value = rarity;
-  }
-  if (type) {
-    document.getElementById('typeSelect').value = type;
-  }
-  if (set) {
-    document.getElementById('setSelect').value = set;
-  }
-  fetchMagicCards();
 }
+if (rarity) {
+  document.getElementById('raritySelect').value = rarity;
+}
+if (type) {
+  document.getElementById('typeSelect').value = type;
+}
+if (set) {
+  document.getElementById('setSelect').value = set;
+}
+const url = new URL(window.location.href);
+url.searchParams.set('page', 0);
+window.history.pushState({}, '', url);
+fetchMagicCards();
