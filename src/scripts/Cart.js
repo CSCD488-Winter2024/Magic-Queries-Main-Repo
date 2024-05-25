@@ -1,12 +1,4 @@
-
-class cards {
-    constructor(name, quantity, picURL, price) {
-        this.name = name;
-        this.quantity = quantity;
-        this.picURL = picURL;
-        this.price = price;
-    }
-}
+import { autofill } from './formHelper.js';
 
 // get cart info from session storage
 function getCart() {
@@ -105,7 +97,11 @@ function displayCart() {
     checkoutButton.textContent = 'Checkout';
     checkoutButton.classList.add('border', 'border-blue-500', 'text-blue-500', 'rounded-md', 'px-4', 'py-2', 'm-2', 'hover:bg-blue-100');
     checkoutButton.classList.add('checkout');
-    checkoutButton.addEventListener('click', () => alert('Checkout clicked'));
+    checkoutButton.addEventListener('click', autofill);
+    checkoutButton.addEventListener('click', () => {
+        sessionStorage.setItem('checkoutClicked', 'true');
+        window.location.href = '/contact-form';
+    });
     cartContainer.appendChild(checkoutButton);
 
     //move checkout button to the right of the cart

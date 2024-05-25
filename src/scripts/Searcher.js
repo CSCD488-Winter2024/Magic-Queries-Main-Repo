@@ -171,16 +171,17 @@ function displayCards() {
 async function handleAddToCartClick(card, quantity) {
   // holds needed card info for the cart
   class cardInfo {
-    constructor(name, quantity, picURL, price, quantityInStock, set) {
+    constructor(name, quantity, picURL, price, quantityInStock, set, color) {
       this.name = name;
       this.quantity = quantity;
       this.picURL = picURL;
       this.price = price;
       this.quantityInStock = quantityInStock;
       this.set = set;
+      this.color = color;
     }
   }
-  const cardToSave = new cardInfo(card.name, quantity, card.picURL, card.price, card.quantity, card.set);
+  const cardToSave = new cardInfo(card.name, quantity, card.picURL, card.price, card.quantity, card.set, card.color);
 
   // append the card to the session storage
   const cart = JSON.parse(sessionStorage.getItem('cart')) || [];

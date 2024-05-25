@@ -43,5 +43,19 @@ const websiteName = 'Contact-Form';
             </form>
         </div>
     </body>
+
+    <script> 
+		import "../scripts/formHelper.js";
+        import { autofill } from "../scripts/formHelper.js";
+        
+        // Autofill the form if the user clicked on the checkout button
+        window.onload = () => {
+            if (sessionStorage.getItem('checkoutClicked') == 'true') {
+                autofill();
+            };
+            sessionStorage.setItem('checkoutClicked', 'false');
+        }
+	</script>
+
     <Footer />
 </html>
