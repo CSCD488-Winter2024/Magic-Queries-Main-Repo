@@ -57,6 +57,16 @@ function fetchMagicCards() {
       cardContainer.innerHTML = '';
       sessionStorage.removeItem('search');
       console.log("Query parts", ...queryParts);
+
+      // add no cards found message in big red letters
+      const noCardsFound = document.createElement('h1');
+      noCardsFound.textContent = 'No cards found.';
+      noCardsFound.style.color = 'red';
+      //noCardsFound.style.textAlign = 'center';
+      noCardsFound.style.marginTop = '250px';
+      noCardsFound.style.fontSize = '75px';
+      cardContainer.appendChild(noCardsFound);
+
       return;
     }
 
