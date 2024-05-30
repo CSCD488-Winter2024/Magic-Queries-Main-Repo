@@ -1,9 +1,25 @@
 ---
+import { Image } from 'astro:assets';
+import cartIcon from '/workspaces/Magic-Queries-Main-Repo/src/images/cart.png';
+import home from '/workspaces/Magic-Queries-Main-Repo/src/images/home.png';
+import contact_page from '/workspaces/Magic-Queries-Main-Repo/src/images/contact_page.png';
 ---
 <div class =" p-10 absolute top-0 right-0">
     <ul class=" text-gray-50 container mx-auto grid gap-4 md:grid-cols-3 md:grid-cols-2">
-        <li class=" block text-center text-xl ring-4 ring-gray-800 bg-blue-200 bg-opacity-50 ring-opacity-25 w-20 h-8 rounded-sm"><a href="/">Home</a></li>
-        <li class=" block text-center text-xl ring-4 ring-gray-800 bg-blue-200 bg-opacity-50 ring-opacity-25 w-20 h-8 rounded-sm"><a href="/contact-form/">Contact</a></li>
-        <li class=" block text-center text-xl ring-4 ring-gray-800 bg-blue-200 bg-opacity-50 ring-opacity-25 w-20 h-8 rounded-sm"><a href="/cart/">Cart</a></li>
+        <li class="">
+            <a href="/">
+                <Image src={home} alt="Home" width="40" height="40" />
+            </a>
+        </li>
+        <li class="">
+            <a href="/contact-form/">
+                <Image src={contact_page} alt="Contact" width="40" height="40" />
+            </a>
+        </li>
+        <li class="">
+            <a href="/cart/">
+                <Image src={cartIcon} alt="Cart" width="40" height="40" />
+            </a>
+        </li>
     </ul>
 </div>
