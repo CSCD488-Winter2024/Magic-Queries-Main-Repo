@@ -16,11 +16,13 @@ const websiteName = 'Merlyns MTG Search';
 <Header />
 
 <Layout title="Layout">
-	<main class= "bg-gray-50 min-h-screen grid grid-cols-3 gap-3">
+	<main class= "bg-gray-50 min-h-screen grid grid-cols-4 gap-3">
 
 		<!-- Start of Sidebar -->
 		<div class="h-screen sticky top-0">
+			<p class="m-4 text-2xl font-bold">Filter By:</p>
 			<!-- Start of Color checkboxes -->
+			<p class="m-4 text-1xl font-bold">Color</p>
 			<div class="m-4 flex items-center">
 				<ul class="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
    					<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
@@ -63,8 +65,9 @@ const websiteName = 'Merlyns MTG Search';
 			</div>
 			<!-- End of Color checkboxes -->
 			<!-- Start of Rarity field -->
+			<p class="m-4 text-1xl font-bold">Rarity</p>
 			<div class="m-4 flex items-center field">
-				<label for="rarity" class="text-sm font-medium">Rarity</label>
+				<label for="rarity" class="text-lg font-medium"></label>
 				<select id="raritySelect" class="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
 					<option value="all">All</option>
 					<option value="C">Common</option>
@@ -76,8 +79,9 @@ const websiteName = 'Merlyns MTG Search';
 			<!-- End of Rarity field -->
 			
 			<!-- Start of Type field -->
+			<p class="m-4 text-1xl font-bold">Type</p>
 			<div class="m-4 flex items-center field">
-				<label for="type" class="text-sm font-medium">Type</label>
+				<label for="type" class="text-lg font-medium"></label>
 				<select id="typeSelect" class="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
 					<option value="all">All</option>
 					<option value="Creature">Creature</option>
@@ -92,8 +96,9 @@ const websiteName = 'Merlyns MTG Search';
 			<!-- End of Type field -->
 
 			<!-- Start of Set field -->
+			<p class="m-4 text-1xl font-bold">Set</p>
 			<div class="m-4 flex items-center field">
-				<label for="set" class="text-sm font-medium">Set</label>
+				<label for="set" class="text-lg font-medium"></label>
 				<select id="setSelect" class="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
 					<option value="all">All</option>
 				</select>
@@ -103,7 +108,7 @@ const websiteName = 'Merlyns MTG Search';
 		<!-- End of Sidebar -->
 
 		<!-- Start of Search box -->
-		<div class=" flex flex-col col-span-2">
+		<div class=" flex flex-col col-span-3">
 			<section class="search-container">
 				<input type="text" id="searchInput" placeholder="Search cards..." />
 				<button id="searchButton">Search</button>
