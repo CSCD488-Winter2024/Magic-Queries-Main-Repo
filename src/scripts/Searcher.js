@@ -239,14 +239,15 @@ searchButton.addEventListener('click', async () => {
 });
 
 // Add event listener to search input to clear search results if input is empty
-/*
 searchInput.addEventListener('input', () => {
-  // Clear search results if input is empty
+  // Clear name search parameter if input is empty
   if (!searchInput.value.trim()) {
-    cardContainer.innerHTML = '';
+    const url = new URL(window.location.href);
+    url.searchParams.delete('name');
+    window.history.pushState({}, '', url);
   }
 });
-*/
+
 
 // Add event listener to search input to allow user to press enter to search
 searchInput.addEventListener("keypress", function (event) {
@@ -267,7 +268,7 @@ for (let i = 0; i < colorCheckboxes.length; i++) {
       url.searchParams.delete('color');
     }
     window.history.pushState({}, '', url);
-    //fetchMagicCards();
+    fetchMagicCards();
   });
 }
 
@@ -288,7 +289,7 @@ raritySelect.addEventListener('change', function () {
     url.searchParams.delete('rarity');
   }
   window.history.pushState({}, '', url);
-  //fetchMagicCards();
+  fetchMagicCards();
 });
 
 // add an event listener to the type field
@@ -308,7 +309,7 @@ typeSelect.addEventListener('change', function () {
     url.searchParams.delete('type');
   }
   window.history.pushState({}, '', url);
-  //fetchMagicCards();
+  fetchMagicCards();
 });
 
 // add an event listener to the set field
@@ -328,7 +329,26 @@ setSelect.addEventListener('change', function () {
     url.searchParams.delete('set');
   }
   window.history.pushState({}, '', url);
-  //fetchMagicCards();
+  fetchMagicCards();
+});
+
+// add an event listener to the clear filters button
+const clearFiltersButton = document.getElementById('clearFiltersButton');
+clearFiltersButton.addEventListener('click', function () {
+  const url = new URL(window.location.href);
+  url.searchParams.delete('color');
+  url.searchParams.delete('rarity');
+  url.searchParams.delete('type');
+  url.searchParams.delete('set');
+  window.history.pushState({}, '', url);
+  fetchMagicCards();
+  // uncheck all the color checkboxes
+  for (let i = 0; i < colorCheckboxes.length; i++) {
+    colorCheckboxes[i].checked = false;
+  }
+  raritySelect.value = 'all';
+  typeSelect.value = 'all';
+  setSelect.value = 'all';
 });
 
 // get set names from scryfall
