@@ -1,40 +1,73 @@
-# Team Magic Queries
+## Repository
+All source code can be found in: https://github.com/CSCD488-Winter2024/Magic-Queries-Main-Repo
 
-## Our project is updating a local game store's (Merlyn's) card buying system.  
 
-### We are going to improve Merlyn's store's website for customers purchasing Magic: The Gathering cards for pickup, currently their ordering system is inconvenient and requires a lot of unnecessary steps, it needs to be updated to current, modern-day standards which will improve business and customer interactions. 
+## Prerequisites
+  - Node Package Manager (NPM)
+  - Astro
+  - Tailwind CSS
 
-Project Goals:
-
-  * Simplify the process for finding cards in stock. This includes searching for cards by name(with auto-complete), color, type, card number, etc.
-  * Display the cards with images.
-  * A submission form for customers to directly email Merlyn's from the web page with the cards already populated in the email in the required Merlyn's format.
-  * Employees can continue working with the current inventory spreadsheets.
-
-These are the major things that we are looking to do for Mr. Waite. However, during the senior project/capstone process we could add or change some of the goals to improve the user experience and take into account what Mr. Waite would like to change or ask for improvements.
-
-## Installation
-
-### Prerequisites
-
+When modifying the code in Visual Studio or Codespaces, you will also need these extensions. They can be installed through the visual studio extensions marketplace for free.
   - Astro extension
-  - Tailwind CSS IntelliSense extension
+  - Tailwind CSS IntelliSense
 
-### Installation Steps
+To make use of the database, you will also need a Firebase account and a working API key.
 
-In the codespace terminal:
 
-  - Type "npm run dev"
+## How to make changes:
+We recommend using Visual Studio Code or GitHub Codespaces when working on the code.
+
+To edit the website and see changes live using Astro:
+  - Make sure your working directory is in .../workspaces/Magic-Queries-Main-Repo
+  - Type "npm run dev" into the console
+  - Click the link to open the webpage if it doesn't automatically open
+
+For more documentation on Astro, check here: https://docs.astro.build/en/getting-started/
+For more documentation on Tailwind CSS, check here: https://tailwindcss.com/docs/installation 
+
+
+## Website structure
+
+*dist:* Files necessary for deploying to Netlify and using Netlify features like the contact-form
+
+*node_modules:* Packages used by NPM. Packages should be installed, updated, or removed using the terminal when possible.
+
+*public:* Normally this would contain the HTML that users see when viewing the site. However, since we use Astro, we put those files in .../src/pages instead.
+
+*src:* Contains most of the site content.
+ 
+ - *components:* Code that is reused by Astro. Components are useful for things like footers, headers, etc., which are used in multiple places. https://docs.astro.build/en/basics/astro-components/
+ 
+ - *layouts:* Components that are used for UI structures. We used Layout.astro to set some styles, like the font type, for the whole site.
+ 
+ - *pages:* The actual pages that users see. Index.astro serves as the home/search page for the site.
+ 
+ - *scripts:* All of our javascript goes here.
+
 
 ## Functionality
 
-Use the search bar to lookup cards by name, this is using the Scryfall API. We are working on linking the game store inventory sheets to the information that comes from Scryfall. Right now this search page will display results from all magic cards, in the near future it will only display cards in stock at Merlyn's
+- Use the search bar to lookup cards by name
+- Use the filters on the side to refine your search
+- Add cards to your cart. You can't add more than the total quantity in stock
+- Click the shopping cart to view each order item along with the total estimated price
+- Checkout from cart to fill the email form with your order details. Submit the form on the same page
+
+
+
+
+
+
+
+
+<br><br><br><br><br><br><br><br>
+--------------------------------------------------------------------------------------
+# Default Astro README
 
 ## License
 
 See [LICENSE.txt](https://github.com/CSCD488-Winter2024/Magic-Queries-Main-Repo/blob/main/LICENSE.txt)
 
-Old Readme file from the inner folders 
 # Astro Starter Kit: Basics
 
 ```sh
