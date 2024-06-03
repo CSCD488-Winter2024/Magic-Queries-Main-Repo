@@ -151,7 +151,7 @@ function displayCards() {
   if (parseInt(url.searchParams.get('page')) > 0) {
     const previousPageButton = document.createElement('button');
     previousPageButton.textContent = 'Previous Page';
-    previousPageButton.classList.add('border', 'border-blue-500', 'text-blue-500', 'rounded-md', 'px-4', 'py-2', 'm-2', 'hover:bg-blue-100');
+    previousPageButton.classList.add('border', 'rounded-md', 'px-4', 'py-2', 'm-2', 'border-gray-600', 'bg-black', 'text-white');
     previousPageButton.addEventListener('click', () => {
       const url = new URL(window.location.href);
       url.searchParams.set('page', parseInt(url.searchParams.get('page')) - 1);
@@ -165,7 +165,7 @@ function displayCards() {
   if (cardIndex === 10) {
     const nextPageButton = document.createElement('button');
     nextPageButton.textContent = 'Next Page';
-    nextPageButton.classList.add('border', 'border-blue-500', 'text-blue-500', 'rounded-md', 'px-4', 'py-2', 'm-2', 'hover:bg-blue-100');
+    nextPageButton.classList.add('border', 'rounded-md', 'px-4', 'py-2', 'm-2', 'border-gray-600', 'bg-black', 'text-white');
 
     nextPageButton.addEventListener('click', () => {
       const url = new URL(window.location.href);
