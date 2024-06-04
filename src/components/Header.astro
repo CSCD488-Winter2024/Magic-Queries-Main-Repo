@@ -1,11 +1,13 @@
 ---
 import Navigation from "./Navigation.astro";
-import { Image } from 'astro:assets';
 ---
 
-<header class = 'bg-green-900'>
-    <div class ="flex justify-start">
-        <img src="https://images.squarespace-cdn.com/content/v1/615c96de44cb036b04b47f25/57ead580-4847-4aad-826d-3cf8f50a0d57/merlyns_transparent.png?format=1500w" alt="Merlyn's Logo" width="200" height="200" />
+<header class="bg-green-900">
+    <div class="flex items-center justify-between w-full">
+        <img class="ml-4" src="https://images.squarespace-cdn.com/content/v1/615c96de44cb036b04b47f25/57ead580-4847-4aad-826d-3cf8f50a0d57/merlyns_transparent.png?format=1500w" alt="Merlyn's Logo" width="200" height="200" />
+        <h1 class="text-4xl text-white text-center absolute left-1/2 transform -translate-x-1/2">MAGIC: THE GATHERING</h1>
     </div>
+    <h2 class="text-2xl text-white text-center">CARDS FOR PURCHASE</h2>
     <h1> <Navigation /> </h1> 
 </header>
+

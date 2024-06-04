@@ -41,10 +41,10 @@ function fetchMagicCards() {
 
   var myQuery;
   if (pagePart === 0) {
-    myQuery = query(collection(firestore, 'MagicCards'), and(...queryParts), orderBy('name'), limit(10));
+    myQuery = query(collection(firestore, 'MagicCards'), and(...queryParts), orderBy('name'), limit(12));
   } else {
     console.log("lastCardOnPage[" + (pagePart - 1) + "] =", lastCardOnPage[pagePart - 1].data());
-    myQuery = query(collection(firestore, 'MagicCards'), and(...queryParts), orderBy('name'), startAfter(lastCardOnPage[pagePart - 1]), limit(10));
+    myQuery = query(collection(firestore, 'MagicCards'), and(...queryParts), orderBy('name'), startAfter(lastCardOnPage[pagePart - 1]), limit(12));
   }
 
   console.log("My query", myQuery);
@@ -114,18 +114,11 @@ function displayCards() {
     imgElement.src = cardNormalPicURL;
     imgElement.alt = card.name; // Set alt attribute for accessibility    
 
-    // Add click event listener to open a new window with detailed information
-    // Right now this doesn't do anything, but we will implement it later
-    cardElement.addEventListener('click', () => {
-      const newItemWindow = window.open(`/item-details/${card.id}`, '_blank');
-      newItemWindow.focus();
-    });
-
     // Create "Add to Cart" button
     const addToCartButton = document.createElement('button');
     addToCartButton.textContent = 'Add to Cart';
     // add border to the button using tailwind
-    addToCartButton.classList.add('border', 'border-blue-500', 'text-blue-500', 'rounded-md', 'px-4', 'py-2', 'm-2', 'hover:bg-blue-100');
+    addToCartButton.classList.add('border', 'font-bold', 'border-green-600', 'text-green-600', 'rounded-md', 'px-4', 'py-2', 'm-2', 'hover:bg-gray-300');
     addToCartButton.classList.add('add-to-cart');
     addToCartButton.addEventListener('click', event => {
       event.stopPropagation(); // Prevent the click event from bubbling to the card element
@@ -146,37 +139,44 @@ function displayCards() {
     cardIndex++;
   });
 
-  const url = new URL(window.location.href);
-  // add a previous page button if the page is greater than 0
-  if (parseInt(url.searchParams.get('page')) > 0) {
-    const previousPageButton = document.createElement('button');
-    previousPageButton.textContent = 'Previous Page';
-    previousPageButton.classList.add('border', 'rounded-md', 'px-4', 'py-2', 'm-2', 'border-gray-600', 'bg-black', 'text-white');
-    previousPageButton.addEventListener('click', () => {
-      const url = new URL(window.location.href);
-      url.searchParams.set('page', parseInt(url.searchParams.get('page')) - 1);
-      window.history.pushState({}, '', url);
-      fetchMagicCards();
-    });
-    cardContainer.appendChild(previousPageButton);
-  }
+const url = new URL(window.location.href);
 
-  // if there are 10 cards, add a next page button
-  if (cardIndex === 10) {
-    const nextPageButton = document.createElement('button');
-    nextPageButton.textContent = 'Next Page';
-    nextPageButton.classList.add('border', 'rounded-md', 'px-4', 'py-2', 'm-2', 'border-gray-600', 'bg-black', 'text-white');
+// Create a container for the pagination buttons
+const paginationContainer = document.createElement('div');
+paginationContainer.classList.add('flex', 'justify-between', 'p-4', 'bg-gray-50', 'mt-4');
+cardContainer.appendChild(paginationContainer);
 
-    nextPageButton.addEventListener('click', () => {
-      const url = new URL(window.location.href);
-      url.searchParams.set('page', parseInt(url.searchParams.get('page')) + 1);
-      window.history.pushState({}, '', url);
-      fetchMagicCards();
-    });
-    cardContainer.appendChild(nextPageButton);
-  }
-
+// Add a previous page button if the page is greater than 0
+if (parseInt(url.searchParams.get('page')) > 0) {
+  const previousPageButton = document.createElement('button');
+  previousPageButton.textContent = 'Previous Page';
+  previousPageButton.classList.add('border', 'rounded-md', 'px-4', 'py-2', 'm-2', 'border-gray-600', 'bg-black', 'text-white', 'hover:bg-gray-700');
+  previousPageButton.addEventListener('click', () => {
+    const url = new URL(window.location.href);
+    url.searchParams.set('page', parseInt(url.searchParams.get('page')) - 1);
+    window.history.pushState({}, '', url);
+    fetchMagicCards();
+  });
+  paginationContainer.appendChild(previousPageButton);
 }
+
+// If there are 10 cards, add a next page button
+if (cardIndex === 12) {
+  const nextPageButton = document.createElement('button');
+  nextPageButton.textContent = 'Next Page';
+  nextPageButton.classList.add('border', 'rounded-md', 'px-4', 'py-2', 'm-2', 'border-gray-600', 'bg-black', 'text-white', 'hover:bg-gray-700');
+  nextPageButton.addEventListener('click', () => {
+    const url = new URL(window.location.href);
+    url.searchParams.set('page', parseInt(url.searchParams.get('page')) + 1);
+    window.history.pushState({}, '', url);
+    fetchMagicCards();
+  });
+  paginationContainer.appendChild(nextPageButton);
+}
+
+}  
+
+
 
 async function handleAddToCartClick(card, quantity) {
   // holds needed card info for the cart
