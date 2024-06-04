@@ -16,49 +16,49 @@ const websiteName = 'Merlyns MTG Search';
 <Header />
 
 <Layout title="Layout">
-	<main class= "bg-gray-50 min-h-screen grid grid-cols-4 gap-3">
+	<main class= "bg-gray-50 min-h-screen grid grid-cols-5 gap-3">
 
 		<!-- Start of Sidebar -->
-		<div class="h-screen sticky top-0">
+		<div class="h-screen sticky top-0 bg-gray-300">
 			<p class="m-4 text-2xl font-bold">Filter By:</p>
 			<!-- Start of Color checkboxes -->
 			<p class="m-4 text-1xl font-bold">Color</p>
 			<div class="m-4 flex items-center">
-				<ul class="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+				<ul class="w-48 text-sm font-medium text-white border border-gray-600 rounded-lg bg-black">
    					<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
         				<div class="flex items-center ps-3">
-        	    			<input id="white-checkbox" type="checkbox" value="W" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500 color-checkbox">
-        	    			<label for="white-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">White</label>
+        	    			<input id="white-checkbox" type="checkbox" value="W" class="w-4 h-4 text-green-800 rounded focus:ring-green-800 dark:focus:ring-green-800 ring-offset-gray-700 focus:ring-offset-gray-700 focus:ring-2 bg-gray-600 border-gray-500 color-checkbox">
+        	    			<label for="white-checkbox" class="w-full py-3 ms-2 text-sm font-medium">White</label>
         				</div>
     				</li>
     				<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
         				<div class="flex items-center ps-3">
-        	    			<input id="blue-checkbox" type="checkbox" value="U" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500 color-checkbox">
-        	    			<label for="blue-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Blue</label>
+        	    			<input id="blue-checkbox" type="checkbox" value="U" class="w-4 h-4 text-green-800 rounded focus:ring-green-800 dark:focus:ring-green-800 ring-offset-gray-700 focus:ring-offset-gray-700 focus:ring-2 bg-gray-600 border-gray-500 color-checkbox">
+        	    			<label for="blue-checkbox" class="w-full py-3 ms-2 text-sm font-medium">Blue</label>
         				</div>
     				</li>
     				<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
         				<div class="flex items-center ps-3">
-        	    			<input id="black-checkbox" type="checkbox" value="B" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500 color-checkbox">
-        	    			<label for="black-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Black</label>
+        	    			<input id="black-checkbox" type="checkbox" value="B" class="w-4 h-4 text-green-800 rounded focus:ring-green-800 dark:focus:ring-green-800 ring-offset-gray-700 focus:ring-offset-gray-700 focus:ring-2 bg-gray-600 border-gray-500 color-checkbox">
+        	    			<label for="black-checkbox" class="w-full py-3 ms-2 text-sm font-medium">Black</label>
         				</div>
     				</li>
     				<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
         				<div class="flex items-center ps-3">
-        	    			<input id="red-checkbox" type="checkbox" value="R" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500 color-checkbox">
-        	    			<label for="red-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Red</label>
+        	    			<input id="red-checkbox" type="checkbox" value="R" class="w-4 h-4 text-green-800 rounded focus:ring-green-800 dark:focus:ring-green-800 ring-offset-gray-700 focus:ring-offset-gray-700 focus:ring-2 bg-gray-600 border-gray-500 color-checkbox">
+        	    			<label for="red-checkbox" class="w-full py-3 ms-2 text-sm font-medium">Red</label>
         				</div>
     				</li>
 					<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
         				<div class="flex items-center ps-3">
-        	    			<input id="green-checkbox" type="checkbox" value="G" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500 color-checkbox">
-        	    			<label for="green-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Green</label>
+        	    			<input id="green-checkbox" type="checkbox" value="G" class="w-4 h-4 text-green-800 rounded focus:ring-green-800 dark:focus:ring-green-800 ring-offset-gray-700 focus:ring-offset-gray-700 focus:ring-2 bg-gray-600 border-gray-500 color-checkbox">
+        	    			<label for="green-checkbox" class="w-full py-3 ms-2 text-sm font-medium">Green</label>
         				</div>
     				</li>
 					<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
         				<div class="flex items-center ps-3">
-        	    			<input id="colorless-checkbox" type="checkbox" value="C" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500 color-checkbox">
-        	    			<label for="colorless-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Colorless</label>
+        	    			<input id="colorless-checkbox" type="checkbox" value="C" class="w-4 h-4 text-green-800 rounded focus:ring-green-800 dark:focus:ring-green-800 ring-offset-gray-700 focus:ring-offset-gray-700 focus:ring-2 bg-gray-600 border-gray-500 color-checkbox">
+        	    			<label for="colorless-checkbox" class="w-full py-3 ms-2 text-sm font-medium">Colorless</label>
         				</div>
     				</li>
 				</ul>
@@ -68,7 +68,7 @@ const websiteName = 'Merlyns MTG Search';
 			<p class="m-4 text-1xl font-bold">Rarity</p>
 			<div class="m-4 flex items-center field">
 				<label for="rarity" class="text-lg font-medium"></label>
-				<select id="raritySelect" class="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+				<select id="raritySelect" class="w-48 text-sm font-medium text-white border border-gray-600 rounded-lg bg-black">
 					<option value="all">All</option>
 					<option value="C">Common</option>
 					<option value="U">Uncommon</option>
@@ -82,7 +82,7 @@ const websiteName = 'Merlyns MTG Search';
 			<p class="m-4 text-1xl font-bold">Type</p>
 			<div class="m-4 flex items-center field">
 				<label for="type" class="text-lg font-medium"></label>
-				<select id="typeSelect" class="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+				<select id="typeSelect" class="w-48 text-sm font-medium text-white bg-black border border-gray-600 rounded-lg">
 					<option value="all">All</option>
 					<option value="Creature">Creature</option>
 					<option value="Instant">Instant</option>
@@ -99,15 +99,15 @@ const websiteName = 'Merlyns MTG Search';
 			<p class="m-4 text-1xl font-bold">Set</p>
 			<div class="m-4 flex items-center field">
 				<label for="set" class="text-lg font-medium"></label>
-				<select id="setSelect" class="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+				<select id="setSelect" class="w-48 text-sm font-medium text-white bg-black border border-gray-600 rounded-lg">
 					<option value="all">All</option>
 				</select>
 			</div>	
 			<!-- End of Set field -->
 
 			<!-- Clear Filters button -->
-			<div class="m-4 flex items-center">
-				<button id="clearFiltersButton" class="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">Clear Filters</button>
+			<div class="m-4 mt-10 flex items-center">
+				<button id="clearFiltersButton" class="w-48 text-sm font-medium text-white bg-black border border-gray-600 rounded-lg">Clear Filters</button>
 			</div>
 			<!-- End of Clear Filters button -->
 			
@@ -115,7 +115,7 @@ const websiteName = 'Merlyns MTG Search';
 		<!-- End of Sidebar -->
 
 		<!-- Start of Search box -->
-		<div class=" flex flex-col col-span-3">
+		<div class=" flex flex-col col-span-4 ml-20">
 			<section class="search-container">
 				<input type="text" id="searchInput" placeholder="Search cards..." />
 				<button id="searchButton">Search</button>

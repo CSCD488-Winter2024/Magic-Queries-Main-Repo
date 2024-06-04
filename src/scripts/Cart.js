@@ -32,8 +32,8 @@ function displayCart() {
         `;
 
         cardDiv.style.width = '20%';
-        cardDiv.style.margin = '10px';
-        cardDiv.style.padding = '10px';
+        cardDiv.style.margin = '5px';
+        cardDiv.style.padding = '5px';
         cardDiv.style.display = 'inline-block';
 
         // add remove button with tailwind styling
@@ -86,27 +86,38 @@ function displayCart() {
     const totalPriceDiv = document.createElement('div');
     totalPriceDiv.classList.add('total-price');
     totalPriceDiv.innerHTML = `<h3>Total Price: $${totalPrice.toFixed(2)}</h3>`;
-    // add border to the total price div using tailwind
-    totalPriceDiv.classList.add('border', 'border-green-800', 'text-green-800', 'rounded-md', 'px-4', 'py-2', 'm-2', 'bg-green-100');
-    // move total price to the right of the cart
-    totalPriceDiv.style.float = 'left';
-    cartContainer.appendChild(totalPriceDiv);
+    totalPriceDiv.classList.add('border', 'rounded-md', 'px-4', 'py-2', 'm-2', 'border-gray-600', 'bg-black', 'text-white');
+    
+    totalPriceDiv.style.position = 'fixed';
+    totalPriceDiv.style.top = '135px';
+    totalPriceDiv.style.left = '10px';
 
     //add a checkout button
     const checkoutButton = document.createElement('button');
     checkoutButton.textContent = 'Checkout';
-    checkoutButton.classList.add('border', 'border-blue-500', 'text-blue-500', 'rounded-md', 'px-4', 'py-2', 'm-2', 'hover:bg-blue-100');
+    checkoutButton.classList.add('border', 'rounded-md', 'px-4', 'py-2', 'm-2', 'border-gray-600', 'bg-black', 'text-white', 'hover:bg-gray-700');
     checkoutButton.classList.add('checkout');
     checkoutButton.addEventListener('click', autofill);
     checkoutButton.addEventListener('click', () => {
         sessionStorage.setItem('checkoutClicked', 'true');
         window.location.href = '/contact-form';
     });
-    cartContainer.appendChild(checkoutButton);
 
-    //move checkout button to the right of the cart
-    checkoutButton.style.float = 'right';
+    checkoutButton.style.position = 'fixed';
+    checkoutButton.style.top = '135px';
+    checkoutButton.style.right = '10px';
 
+    // Append the total price and checkout button to the body or a fixed container
+    document.body.appendChild(totalPriceDiv);
+    document.body.appendChild(checkoutButton);
+
+    // Center the cart container
+    cartContainer.style.display = 'flex';
+    cartContainer.style.flexWrap = 'wrap';
+    cartContainer.style.justifyContent = 'center';
+    cartContainer.style.marginTop = '50px'; // Adjust this margin to avoid overlapping with the fixed elements
+    cartContainer.style.marginLeft = '100px';
+    cartContainer.style.marginRight = '80px';
 }
 
 displayCart();
